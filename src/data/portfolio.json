@@ -1,0 +1,81 @@
+{
+  "projects": [
+    {
+      "id": "flutter-app",
+      "title": "Aplikacja mobilna - Akademia Krav Maga",
+      "description": "Kompleksowa aplikacja Flutter do zarządzania szkołą sztuk walki",
+      "technologies": ["Flutter", "Dart", "Firebase", "BLoC", "Riverpod"],
+      "features": [
+        "System zarządzania uczestnikami",
+        "Płatności i faktury",
+        "Rejestracja na zajęcia",
+        "Egzaminy i certyfikaty",
+        "Powiadomienia push",
+        "Eksport danych do Excel/PDF"
+      ],
+      "codeSnippet": {
+        "file": "lib/features/payments/services/payment_service.dart",
+        "language": "dart",
+        "code": "Future<PaymentResult> processPayment({\n  required String userId,\n  required double amount,\n  required PaymentMethod method,\n}) async {\n  try {\n    final transaction = await _firestore\n      .collection('payments')\n      .add({\n        'userId': userId,\n        'amount': amount,\n        'method': method.name,\n        'status': 'pending',\n        'createdAt': FieldValue.serverTimestamp(),\n      });\n    \n    return PaymentResult.success(transaction.id);\n  } catch (e) {\n    return PaymentResult.failure(e.toString());\n  }\n}"
+      }
+    },
+    {
+      "id": "nextjs-gosia",
+      "title": "Strona WWW - Holistic Star",
+      "description": "Nowoczesna strona z blogiem, galerią i integracją social media",
+      "technologies": ["Next.js", "React", "TypeScript", "Firebase", "Tailwind CSS"],
+      "features": [
+        "Blog z markdown",
+        "Integracja Instagram/YouTube",
+        "Panel administracyjny",
+        "Formularz kontaktowy z email",
+        "Zarządzanie zdjęciami",
+        "Newsletter"
+      ],
+      "codeSnippet": {
+        "file": "src/app/api/contact/route.ts",
+        "language": "typescript",
+        "code": "export async function POST(request: NextRequest) {\n  const { name, email, message } = await request.json();\n  \n  const adminEmail = await resend.emails.send({\n    from: FROM_EMAIL,\n    to: CONTACT_EMAIL,\n    subject: `💌 Nowa wiadomość od ${name}`,\n    html: contactEmailTemplate({ name, email, message }),\n  });\n  \n  return NextResponse.json({ success: true });\n}"
+      }
+    },
+    {
+      "id": "nextjs-djluca",
+      "title": "Strona WWW - DJ Luca",
+      "description": "Strona dla DJ'a z systemem rezerwacji i zarządzania klientami",
+      "technologies": ["Next.js", "React", "Firebase Admin", "Framer Motion"],
+      "features": [
+        "System rezerwacji wydarzeń",
+        "Panel admin z zarządzaniem klientami",
+        "Automatyczne emaile potwierdzające",
+        "Integracja z Facebook Reviews",
+        "Galeria zdjęć",
+        "Last-minute oferty"
+      ],
+      "codeSnippet": {
+        "file": "src/app/api/send-email/route.ts",
+        "language": "typescript",
+        "code": "const clientData = {\n  formData: { name, phone, email, eventType },\n  createdAt: FieldValue.serverTimestamp(),\n  status: 'new',\n  emailHistory: [],\n};\n\nawait db.collection('zarejestrowanych').add(clientData);\n\nconst confirmationEmail = await db.collection('mail').add({\n  to: [email],\n  message: {\n    subject: '✅ Otrzymałem Twoje zapytanie',\n    html: confirmationHtml,\n  },\n});"
+      }
+    },
+    {
+      "id": "nextjs-akademia",
+      "title": "System webowy - Akademia Samoobrony",
+      "description": "Zaawansowany system do zarządzania akademią z dashboardem i analityką",
+      "technologies": ["Next.js", "React", "Firebase", "Google Analytics", "Recharts"],
+      "features": [
+        "Dashboard z analityką",
+        "Zarządzanie budżetem klubu",
+        "System płatności HotPay",
+        "Rejestracja na wydarzenia",
+        "Zarządzanie inwentarzem",
+        "Integracja Google Analytics"
+      ],
+      "codeSnippet": {
+        "file": "src/app/api/analytics/route.ts",
+        "language": "typescript",
+        "code": "export async function GET() {\n  const analytics = getAnalyticsClient();\n  \n  const [sessions, pageViews] = await Promise.all([\n    analytics.runReport({\n      dateRanges: [{ startDate: '30daysAgo', endDate: 'today' }],\n      metrics: [{ name: 'sessions' }],\n    }),\n    analytics.runReport({\n      dateRanges: [{ startDate: '30daysAgo', endDate: 'today' }],\n      metrics: [{ name: 'screenPageViews' }],\n    }),\n  ]);\n  \n  return NextResponse.json({ sessions, pageViews });\n}"
+      }
+    }
+  ]
+}
+

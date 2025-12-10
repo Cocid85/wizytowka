@@ -1,0 +1,106 @@
+{
+  "technologies": [
+    {
+      "name": "Next.js",
+      "category": "framework",
+      "icon": "nextjs"
+    },
+    {
+      "name": "React",
+      "category": "framework",
+      "icon": "react"
+    },
+    {
+      "name": "Flutter",
+      "category": "framework",
+      "icon": "flutter"
+    },
+    {
+      "name": "TypeScript",
+      "category": "language",
+      "icon": "typescript"
+    },
+    {
+      "name": "Dart",
+      "category": "language",
+      "icon": "dart"
+    },
+    {
+      "name": "Tailwind CSS",
+      "category": "styling",
+      "icon": "tailwindcss"
+    },
+    {
+      "name": "Firebase",
+      "category": "backend",
+      "icon": "firebase"
+    },
+    {
+      "name": "Firebase Admin",
+      "category": "backend",
+      "icon": "firebase"
+    },
+    {
+      "name": "BLoC",
+      "category": "state",
+      "icon": "flutter"
+    },
+    {
+      "name": "Riverpod",
+      "category": "state",
+      "icon": "flutter"
+    },
+    {
+      "name": "Framer Motion",
+      "category": "animation",
+      "icon": "framer"
+    },
+    {
+      "name": "Flutter Animate",
+      "category": "animation",
+      "icon": "flutter"
+    },
+    {
+      "name": "React Hook Form",
+      "category": "forms",
+      "icon": "react"
+    },
+    {
+      "name": "Zod",
+      "category": "forms",
+      "icon": "zod"
+    },
+    {
+      "name": "Resend",
+      "category": "email",
+      "icon": "resend"
+    },
+    {
+      "name": "React Email",
+      "category": "email",
+      "icon": "react"
+    },
+    {
+      "name": "Google Analytics",
+      "category": "analytics",
+      "icon": "google"
+    },
+    {
+      "name": "Recharts",
+      "category": "visualization",
+      "icon": "recharts"
+    },
+    {
+      "name": "FL Chart",
+      "category": "visualization",
+      "icon": "flutter"
+    },
+    {
+      "name": "Lucide Icons",
+      "category": "ui",
+      "icon": "lucide"
+    }
+  ],
+  "generatedAt": "2025-01-27T00:00:00.000Z"
+}
+
