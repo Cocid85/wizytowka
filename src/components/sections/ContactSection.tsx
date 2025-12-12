@@ -270,7 +270,7 @@ export default function ContactSection() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            Mam na imię <span className="font-bold text-red-400">Michał Szymanowski</span> i{' '}
+            Nazywam się <span className="font-bold text-red-400">Michał Szymanowski</span> i{' '}
             <span className="text-[#00ff41] font-semibold">stworzę dla Ciebie coś wyjątkowego</span>.
           </motion.p>
         </motion.div>

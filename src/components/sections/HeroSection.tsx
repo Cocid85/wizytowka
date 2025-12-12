@@ -204,7 +204,7 @@ export default function HeroSection() {
               transition={{ delay: 0.6, duration: 0.6 }}
             >
               <p className="text-lg text-white leading-relaxed">
-                Mam na imię <span className="font-bold text-red-400">Michał Szymanowski</span> i{' '}
+                Nazywam się <span className="font-bold text-red-400">Michał Szymanowski</span> i{' '}
                 <span className="text-[#00ff41] font-semibold">stworzę dla Ciebie coś wyjątkowego</span>.
               </p>
             </motion.div>
