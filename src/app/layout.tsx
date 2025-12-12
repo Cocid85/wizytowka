@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import { Toaster } from "react-hot-toast";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import LanguageWrapper from "@/components/LanguageWrapper";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -33,8 +34,10 @@ export default function RootLayout({
     <html lang="pl" className="dark">
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         <LanguageProvider>
-          <SmoothScroll />
-          {children}
+          <LanguageWrapper>
+            <SmoothScroll />
+            {children}
+          </LanguageWrapper>
           <Toaster
           position="top-right"
           containerClassName="toaster-container"
