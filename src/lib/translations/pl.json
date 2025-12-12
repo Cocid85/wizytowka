@@ -56,6 +56,64 @@
       "emailError": "Nieprawidłowy adres email",
       "messageError": "Wiadomość musi mieć co najmniej 10 znaków"
     }
+  },
+  "services": {
+    "title": "Co mogę dla Ciebie zbudować?",
+    "subtitle": "Kompleksowe rozwiązania od aplikacji mobilnych po zaawansowane systemy webowe",
+    "items": {
+      "mobile": {
+        "title": "Aplikacje mobilne",
+        "description": "Natywne aplikacje iOS i Android w Flutter. Szybkie, płynne i piękne interfejsy."
+      },
+      "web": {
+        "title": "Strony WWW",
+        "description": "Nowoczesne strony z Next.js i React. SEO-friendly, szybkie i responsywne."
+      },
+      "systems": {
+        "title": "Systemy webowe",
+        "description": "Zaawansowane aplikacje webowe z panelami admin, dashboardami i analityką."
+      },
+      "integrations": {
+        "title": "Integracje API",
+        "description": "Integracje z zewnętrznymi serwisami, automatyzacje i webhooki."
+      }
+    }
+  },
+  "process": {
+    "title": "Jak wygląda współpraca?",
+    "subtitle": "Prosty, przejrzysty proces od pomysłu do gotowego produktu",
+    "steps": {
+      "brief": {
+        "title": "Brief",
+        "description": "Omawiamy Twoje potrzeby, cele i wymagania. Ustalamy zakres projektu."
+      },
+      "design": {
+        "title": "Projekt",
+        "description": "Tworzę mockupy, wireframe'y i planuję architekturę rozwiązania."
+      },
+      "development": {
+        "title": "Rozwój",
+        "description": "Piszę kod, implementuję funkcjonalności i testuję rozwiązanie."
+      },
+      "deployment": {
+        "title": "Wdrożenie",
+        "description": "Deploy, optymalizacja i wsparcie po wdrożeniu. Projekt gotowy!"
+      }
+    }
+  },
+  "footer": {
+    "cta": {
+      "title": "Gotowy na współpracę?",
+      "subtitle": "Masz pomysł na projekt? Porozmawiajmy o tym, jak mogę pomóc go zrealizować.",
+      "button": "Napisz do mnie"
+    },
+    "contact": "Kontakt",
+    "navigation": "Nawigacja",
+    "social": "Social",
+    "backToTop": "Do góry",
+    "copyright": "Wszelkie prawa zastrzeżone.",
+    "builtWith": "Zbudowane z",
+    "and": "i"
   }
 }
 

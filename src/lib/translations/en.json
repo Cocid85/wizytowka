@@ -56,6 +56,64 @@
       "emailError": "Invalid email address",
       "messageError": "Message must be at least 10 characters"
     }
+  },
+  "services": {
+    "title": "What can I build for you?",
+    "subtitle": "Comprehensive solutions from mobile apps to advanced web systems",
+    "items": {
+      "mobile": {
+        "title": "Mobile apps",
+        "description": "Native iOS and Android apps in Flutter. Fast, smooth and beautiful interfaces."
+      },
+      "web": {
+        "title": "Websites",
+        "description": "Modern websites with Next.js and React. SEO-friendly, fast and responsive."
+      },
+      "systems": {
+        "title": "Web systems",
+        "description": "Advanced web applications with admin panels, dashboards and analytics."
+      },
+      "integrations": {
+        "title": "API integrations",
+        "description": "Integrations with external services, automations and webhooks."
+      }
+    }
+  },
+  "process": {
+    "title": "How does collaboration work?",
+    "subtitle": "Simple, transparent process from idea to finished product",
+    "steps": {
+      "brief": {
+        "title": "Brief",
+        "description": "We discuss your needs, goals and requirements. We define the project scope."
+      },
+      "design": {
+        "title": "Design",
+        "description": "I create mockups, wireframes and plan the solution architecture."
+      },
+      "development": {
+        "title": "Development",
+        "description": "I write code, implement features and test the solution."
+      },
+      "deployment": {
+        "title": "Deployment",
+        "description": "Deploy, optimization and post-deployment support. Project ready!"
+      }
+    }
+  },
+  "footer": {
+    "cta": {
+      "title": "Ready to collaborate?",
+      "subtitle": "Have a project idea? Let's talk about how I can help bring it to life.",
+      "button": "Write to me"
+    },
+    "contact": "Contact",
+    "navigation": "Navigation",
+    "social": "Social",
+    "backToTop": "Back to top",
+    "copyright": "All rights reserved.",
+    "builtWith": "Built with",
+    "and": "and"
   }
 }
 

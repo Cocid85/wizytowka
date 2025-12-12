@@ -4,36 +4,33 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FileText, Palette, Code, Rocket, CheckCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const steps = [
   {
     icon: FileText,
-    title: 'Brief',
-    description: 'Omawiamy Twoje potrzeby, cele i wymagania. Ustalamy zakres projektu.',
+    key: 'brief',
     color: 'from-red-500 to-red-600',
     bgColor: 'bg-red-500',
     shadowColor: 'shadow-red-500/30',
   },
   {
     icon: Palette,
-    title: 'Projekt',
-    description: "Tworzę mockupy, wireframe'y i planuję architekturę rozwiązania.",
+    key: 'design',
     color: 'from-red-600 to-black',
     bgColor: 'bg-red-600',
     shadowColor: 'shadow-red-600/30',
   },
   {
     icon: Code,
-    title: 'Rozwój',
-    description: 'Piszę kod, implementuję funkcjonalności i testuję rozwiązanie.',
+    key: 'development',
     color: 'from-red-500 to-rose-500',
     bgColor: 'bg-red-500',
     shadowColor: 'shadow-red-500/30',
   },
   {
     icon: Rocket,
-    title: 'Wdrożenie',
-    description: 'Deploy, optymalizacja i wsparcie po wdrożeniu. Projekt gotowy!',
+    key: 'deployment',
     color: 'from-rose-500 to-pink-500',
     bgColor: 'bg-rose-500',
     shadowColor: 'shadow-rose-500/30',
@@ -41,6 +38,7 @@ const steps = [
 ];
 
 export default function ProcessSection() {
+  const { t } = useLanguage();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
@@ -128,10 +126,10 @@ export default function ProcessSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Jak wygląda współpraca?</span>
+            <span className="text-gradient">{t('process.title')}</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Prosty, przejrzysty proces od pomysłu do gotowego produktu
+            {t('process.subtitle')}
           </p>
         </motion.div>
 
@@ -156,7 +154,7 @@ export default function ProcessSection() {
 
                 return (
                   <motion.div
-                    key={step.title}
+                    key={step.key}
                     initial={{ scale: 0 }}
                     animate={inView ? { scale: 1 } : {}}
                     transition={{ delay: 0.2 + index * 0.1, type: 'spring', stiffness: 300 }}
@@ -202,7 +200,7 @@ export default function ProcessSection() {
                         isActive ? 'text-white' : isCompleted || isPast ? 'text-gray-300' : 'text-gray-500'
                       }`}
                     >
-                      {step.title}
+                      {t(`process.steps.${step.key}.title`)}
                     </motion.span>
                   </motion.div>
                 );
@@ -219,7 +217,7 @@ export default function ProcessSection() {
 
               return (
                 <motion.div
-                  key={step.title}
+                  key={step.key}
                   initial={{ opacity: 0, y: 30 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.1 }}
@@ -246,7 +244,7 @@ export default function ProcessSection() {
                       isActive ? 'text-gray-300' : isCompleted ? 'text-gray-400' : 'text-gray-600'
                     }`}
                   >
-                    {step.description}
+                    {t(`process.steps.${step.key}.description`)}
                   </p>
 
                   {/* Badge aktywności */}
@@ -300,7 +298,7 @@ export default function ProcessSection() {
 
                 return (
                   <motion.div
-                    key={step.title}
+                    key={step.key}
                     initial={{ opacity: 0, x: -20 }}
                     animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0.3, x: 0 }}
                     transition={{ duration: 0.4 }}
@@ -333,7 +331,7 @@ export default function ProcessSection() {
                     <div className={`flex-1 pb-8 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-30'}`}>
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className={`font-bold text-lg ${isActive ? 'text-white' : isCompleted ? 'text-gray-300' : 'text-gray-500'}`}>
-                          {step.title}
+                          {t(`process.steps.${step.key}.title`)}
                         </h3>
                         {isActive && (
                           <motion.span
@@ -346,7 +344,7 @@ export default function ProcessSection() {
                         )}
                       </div>
                       <p className={`text-sm ${isActive ? 'text-gray-300' : 'text-gray-500'}`}>
-                        {step.description}
+                        {t(`process.steps.${step.key}.description`)}
                       </p>
                     </div>
                   </motion.div>

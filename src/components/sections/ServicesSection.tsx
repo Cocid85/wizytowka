@@ -4,39 +4,37 @@ import { motion } from 'framer-motion';
 import { Smartphone, Globe, Server, Plug } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import TiltCard from '@/components/TiltCard';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const services = [
   {
     icon: Smartphone,
-    title: 'Aplikacje mobilne',
-    description: 'Natywne aplikacje iOS i Android w Flutter. Szybkie, płynne i piękne interfejsy.',
+    key: 'mobile',
     features: ['Flutter/Dart', 'Firebase', 'Offline-first', 'Push notifications'],
     gradient: 'from-red-500 to-red-600',
   },
   {
     icon: Globe,
-    title: 'Strony WWW',
-    description: 'Nowoczesne strony z Next.js i React. SEO-friendly, szybkie i responsywne.',
+    key: 'web',
     features: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS'],
     gradient: 'from-gray-900 to-black',
   },
   {
     icon: Server,
-    title: 'Systemy webowe',
-    description: 'Zaawansowane aplikacje webowe z panelami admin, dashboardami i analityką.',
+    key: 'systems',
     features: ['Full-stack', 'Firebase Admin', 'Google Analytics', 'Recharts'],
     gradient: 'from-red-600 to-black',
   },
   {
     icon: Plug,
-    title: 'Integracje API',
-    description: 'Integracje z zewnętrznymi serwisami, automatyzacje i webhooki.',
+    key: 'integrations',
     features: ['REST API', 'Webhooks', 'Email services', 'Social media APIs'],
     gradient: 'from-[#00ff41] to-green-500',
   },
 ];
 
 export default function ServicesSection() {
+  const { t } = useLanguage();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -77,16 +75,16 @@ export default function ServicesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Co mogę dla Ciebie zbudować?</span>
+            <span className="text-gradient">{t('services.title')}</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Kompleksowe rozwiązania od aplikacji mobilnych po zaawansowane systemy webowe
+            {t('services.subtitle')}
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
-            <TiltCard key={service.title}>
+            <TiltCard key={service.key}>
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -97,8 +95,8 @@ export default function ServicesSection() {
                 <service.icon className="w-7 h-7 text-white" />
               </div>
               
-              <h3 className="text-xl font-bold mb-2 text-white">{service.title}</h3>
-              <p className="text-gray-400 mb-4 text-sm leading-relaxed">{service.description}</p>
+              <h3 className="text-xl font-bold mb-2 text-white">{t(`services.items.${service.key}.title`)}</h3>
+              <p className="text-gray-400 mb-4 text-sm leading-relaxed">{t(`services.items.${service.key}.description`)}</p>
               
               <ul className="space-y-2">
                 {service.features.map((feature) => (
