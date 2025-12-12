@@ -12,13 +12,14 @@ import {
   MapPin,
   ChevronUp
 } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const navigation = [
-  { name: 'Usługi', href: '#uslugi' },
-  { name: 'Tech Stack', href: '#tech-stack' },
-  { name: 'Portfolio', href: '#portfolio' },
-  { name: 'Proces', href: '#proces' },
-  { name: 'Kontakt', href: '#kontakt' },
+  { key: 'services', href: '#uslugi' },
+  { key: 'techStack', href: '#tech-stack' },
+  { key: 'portfolio', href: '#portfolio' },
+  { key: 'process', href: '#proces' },
+  { key: 'contact', href: '#kontakt' },
 ];
 
 const socials = [
