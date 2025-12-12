@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 
 const navItems = [
   { label: 'Usługi', href: '#uslugi' },
@@ -86,13 +85,10 @@ export default function Navigation() {
                 transition={{ type: 'spring', stiffness: 400 }}
                 className="relative"
               >
-                <Image
+                <img
                   src="/image/logo_svg_jasne.svg"
                   alt="Logo"
-                  width={40}
-                  height={40}
                   className="h-10 w-auto"
-                  priority
                 />
               </motion.div>
             </motion.a>
@@ -209,11 +205,9 @@ export default function Navigation() {
                 <div className="flex items-center justify-between p-6 border-b border-white/10">
                   <div className="flex items-center gap-2">
                     <div className="relative">
-                      <Image
+                      <img
                         src="/image/logo_svg_jasne.svg"
                         alt="Logo"
-                        width={32}
-                        height={32}
                         className="h-8 w-auto"
                       />
                     </div>

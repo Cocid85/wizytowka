@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Image from 'next/image';
 import { 
   Github, 
   Linkedin, 
@@ -98,13 +97,10 @@ export default function Footer() {
             className="flex items-center justify-center md:justify-start"
           >
             <div className="relative">
-              <Image
+              <img
                 src="/image/logo_svg_jasne.svg"
                 alt="Logo"
-                width={200}
-                height={200}
                 className="w-full max-w-[200px] h-auto"
-                priority
               />
             </div>
           </motion.div>
