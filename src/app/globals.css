@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --font-inter: 'Inter', sans-serif;
@@ -9,13 +7,13 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-gray-800;
   }
   
   body {
-    @apply bg-[#0a0a0a] text-gray-100;
+    @apply bg-black text-gray-100;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, rgba(255, 215, 0, 0.15) 0px, transparent 50%),
       radial-gradient(at 100% 100%, rgba(220, 38, 38, 0.1) 0px, transparent 50%);
     background-attachment: fixed;
   }
@@ -23,9 +21,18 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#ffd700] via-[#d4af37] to-[#dc2626];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#ffd700] via-[#d4af37] to-[#ffd700];
     background-size: 200% 200%;
     animation: gradient 8s ease infinite;
+  }
+  
+  .underline-red {
+    @apply relative;
+  }
+  
+  .underline-red::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-red-600 to-transparent;
   }
   
   .glass {
@@ -90,11 +97,11 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(212, 175, 55, 0.5);
+  background: rgba(255, 215, 0, 0.5);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 175, 55, 0.7);
+  background: rgba(255, 215, 0, 0.7);
 }
 

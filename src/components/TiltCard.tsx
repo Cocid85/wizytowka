@@ -19,7 +19,7 @@ export default function TiltCard({ children, className = '' }: TiltCardProps) {
       scale={1.02}
       glareEnable
       glareMaxOpacity={0.2}
-      glareColor="#8b5cf6"
+      glareColor="#ffd700"
       glarePosition="all"
     >
       {children}

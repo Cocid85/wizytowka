@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "Tworzę aplikacje i strony internetowe",
   description: "Profesjonalne aplikacje mobilne, strony WWW i systemy webowe. Nowoczesne technologie, eleganckie rozwiązania.",
   keywords: ["aplikacje mobilne", "strony internetowe", "Next.js", "Flutter", "React", "TypeScript"],
+  // Favicon będzie automatycznie obsługiwany przez Next.js jeśli umieścisz favicon.ico w app/ lub public/
 };
 
 export default function RootLayout({

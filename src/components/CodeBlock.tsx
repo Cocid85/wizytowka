@@ -17,7 +17,7 @@ export default function CodeBlock({ code, language, filename }: CodeBlockProps) 
           <div className="flex gap-1.5">
             <div className="w-2 h-2 rounded-full bg-red-500" />
             <div className="w-2 h-2 rounded-full bg-yellow-500" />
-            <div className="w-2 h-2 rounded-full bg-green-500" />
+            <div className="w-2 h-2 rounded-full bg-red-500" />
           </div>
           <span className="text-xs text-gray-400 ml-2">{filename}</span>
         </div>

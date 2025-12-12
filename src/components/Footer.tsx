@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Code2 className="w-6 h-6 text-purple-400" />
+              <Code2 className="w-6 h-6 text-yellow-400" />
               <span className="text-xl font-bold text-gradient">{'<Dev />'}</span>
             </div>
             <p className="text-gray-400 text-sm">
@@ -48,21 +48,21 @@ export default function Footer() {
             <div className="flex gap-4">
               <a
                 href="#"
-                className="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-white hover:bg-purple-500/20 transition-colors"
+                className="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-white hover:bg-yellow-500/20 transition-colors"
                 aria-label="GitHub"
               >
                 <Github className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-white hover:bg-cyan-500/20 transition-colors"
+                className="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-500/20 transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
                 href="mailto:kontakt@example.com"
-                className="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-white hover:bg-green-500/20 transition-colors"
+                className="w-10 h-10 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-500/20 transition-colors"
                 aria-label="Email"
               >
                 <Mail className="w-5 h-5" />

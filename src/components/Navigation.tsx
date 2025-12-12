@@ -18,6 +18,7 @@ export default function Navigation() {
 
   const navItems = [
     { label: 'Usługi', href: '#uslugi' },
+    { label: 'Funkcjonalności', href: '#funkcjonalnosci' },
     { label: 'Tech Stack', href: '#tech-stack' },
     { label: 'Portfolio', href: '#portfolio' },
     { label: 'Proces', href: '#proces' },
@@ -51,7 +52,7 @@ export default function Navigation() {
                 className="text-gray-300 hover:text-white transition-colors relative group"
               >
                 {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 group-hover:w-full transition-all duration-300" />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>

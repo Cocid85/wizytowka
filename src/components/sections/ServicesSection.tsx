@@ -11,28 +11,28 @@ const services = [
     title: 'Aplikacje mobilne',
     description: 'Natywne aplikacje iOS i Android w Flutter. Szybkie, płynne i piękne interfejsy.',
     features: ['Flutter/Dart', 'Firebase', 'Offline-first', 'Push notifications'],
-    gradient: 'from-purple-500 to-pink-500',
+    gradient: 'from-yellow-500 to-yellow-600',
   },
   {
     icon: Globe,
     title: 'Strony WWW',
     description: 'Nowoczesne strony z Next.js i React. SEO-friendly, szybkie i responsywne.',
     features: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS'],
-    gradient: 'from-cyan-500 to-blue-500',
+    gradient: 'from-yellow-400 to-yellow-500',
   },
   {
     icon: Server,
     title: 'Systemy webowe',
     description: 'Zaawansowane aplikacje webowe z panelami admin, dashboardami i analityką.',
     features: ['Full-stack', 'Firebase Admin', 'Google Analytics', 'Recharts'],
-    gradient: 'from-green-500 to-emerald-500',
+    gradient: 'from-yellow-600 to-yellow-700',
   },
   {
     icon: Plug,
     title: 'Integracje API',
     description: 'Integracje z zewnętrznymi serwisami, automatyzacje i webhooki.',
     features: ['REST API', 'Webhooks', 'Email services', 'Social media APIs'],
-    gradient: 'from-orange-500 to-red-500',
+    gradient: 'from-yellow-500 to-yellow-400',
   },
 ];
 
@@ -43,8 +43,32 @@ export default function ServicesSection() {
   });
 
   return (
-    <section id="uslugi" className="py-24 relative">
-      <div className="container mx-auto px-4">
+    <section id="uslugi" className="py-24 relative overflow-hidden">
+      {/* Animated gradient orbs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(234,179,8,0.15) 0%, transparent 70%)',
+          }}
+          animate={{
+            scale: [1, 1.2, 1],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(239,68,68,0.1) 0%, transparent 70%)',
+          }}
+          animate={{
+            scale: [1.2, 1, 1.2],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
@@ -79,7 +103,7 @@ export default function ServicesSection() {
               <ul className="space-y-2">
                 {service.features.map((feature) => (
                   <li key={feature} className="text-sm text-gray-500 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
                     {feature}
                   </li>
                 ))}
