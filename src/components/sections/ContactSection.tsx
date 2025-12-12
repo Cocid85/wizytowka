@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Send, Mail, MessageSquare, CheckCircle2, Loader2 } from 'lucide-react';
+import { Send, Mail, MessageSquare, CheckCircle2, Loader2, Phone, Clock, Copy, Check } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -35,6 +35,7 @@ function FormContent({
     <form
       onSubmit={onSubmit}
       className="p-6 space-y-6 bg-gradient-to-br from-gray-900/95 via-gray-800/95 to-gray-900/95 h-full"
+      suppressHydrationWarning
     >
       <div>
         <label htmlFor="name" className="block text-sm font-semibold text-white mb-2">
@@ -47,6 +48,7 @@ function FormContent({
           disabled={foldState !== 'idle'}
           className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors disabled:opacity-50"
           placeholder="Jan Kowalski"
+          suppressHydrationWarning
         />
         {errors.name && (
           <p className="mt-1 text-sm text-red-400">{errors.name.message}</p>
@@ -64,6 +66,7 @@ function FormContent({
           disabled={foldState !== 'idle'}
           className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors disabled:opacity-50"
           placeholder="jan@example.com"
+          suppressHydrationWarning
         />
         {errors.email && (
           <p className="mt-1 text-sm text-red-400">{errors.email.message}</p>
@@ -81,6 +84,7 @@ function FormContent({
           disabled={foldState !== 'idle'}
           className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors resize-none disabled:opacity-50"
           placeholder="Opisz swój projekt..."
+          suppressHydrationWarning
         />
         {errors.message && (
           <p className="mt-1 text-sm text-red-400">{errors.message.message}</p>
@@ -121,6 +125,13 @@ export default function ContactSection() {
   const [foldState, setFoldState] = useState<'idle' | 'folding' | 'folded' | 'success'>('idle');
   const [formHeight, setFormHeight] = useState(520);
   const formContainerRef = useRef<HTMLDivElement>(null);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
+
+  const copyToClipboard = (text: string, field: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedField(field);
+    setTimeout(() => setCopiedField(null), 2000);
+  };
 
   // Zmierz wysokość formularza
   useEffect(() => {
@@ -216,32 +227,8 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="kontakt" className="py-24 relative overflow-hidden">
-      {/* Animated gradient orbs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(234,179,8,0.15) 0%, transparent 70%)',
-          }}
-          animate={{
-            scale: [1, 1.2, 1],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(239,68,68,0.1) 0%, transparent 70%)',
-          }}
-          animate={{
-            scale: [1.2, 1, 1.2],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="kontakt" className="py-24 relative">
+      <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
@@ -258,45 +245,188 @@ export default function ContactSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Info */}
+          {/* Contact Info - Efektowna wersja */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="space-y-6"
           >
-            <div className="glass rounded-xl p-6">
-              <h3 className="text-2xl font-bold text-white mb-4">Dane kontaktowe</h3>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-500 to-red-500 flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-400">Email</p>
-                    <a href="mailto:kontakt@example.com" className="text-white hover:text-yellow-400 transition-colors">
-                      kontakt@example.com
-                    </a>
-                  </div>
+            {/* Główna karta z danymi */}
+            <div className="relative group">
+              {/* Glow effect */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+              
+              <div className="relative glass rounded-2xl p-8 border border-white/10 overflow-hidden">
+                {/* Background pattern */}
+                <div className="absolute inset-0 opacity-5">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+                    backgroundSize: '32px 32px',
+                  }} />
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-red-500 to-yellow-500 flex items-center justify-center">
-                    <MessageSquare className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-400">Wiadomość</p>
-                    <p className="text-white">Odpowiem w ciągu 24h</p>
-                  </div>
+
+                <h3 className="text-2xl font-bold text-white mb-8 relative">
+                  Dane kontaktowe
+                  <motion.div 
+                    className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full"
+                    initial={{ width: 0 }}
+                    animate={inView ? { width: '80px' } : {}}
+                    transition={{ delay: 0.5, duration: 0.6 }}
+                  />
+                </h3>
+
+                <div className="space-y-6 relative">
+                  {/* Email */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.3 }}
+                    className="group/item"
+                  >
+                    <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300 cursor-pointer border border-transparent hover:border-yellow-500/30"
+                         onClick={() => copyToClipboard('ms.akademiaair@gmail.com', 'email')}>
+                      <motion.div 
+                        className="w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center shadow-lg shadow-yellow-500/20"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: 'spring', stiffness: 400 }}
+                      >
+                        <Mail className="w-6 h-6 text-black" />
+                      </motion.div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm text-gray-400 mb-1">Email</p>
+                        <p className="text-white font-medium truncate group-hover/item:text-yellow-400 transition-colors">
+                          ms.akademiaair@gmail.com
+                        </p>
+                      </div>
+                      <motion.div
+                        className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        {copiedField === 'email' ? (
+                          <Check className="w-4 h-4 text-green-400" />
+                        ) : (
+                          <Copy className="w-4 h-4 text-gray-400 group-hover/item:text-white transition-colors" />
+                        )}
+                      </motion.div>
+                    </div>
+                  </motion.div>
+
+                  {/* Telefon */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.4 }}
+                    className="group/item"
+                  >
+                    <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300 cursor-pointer border border-transparent hover:border-orange-500/30"
+                         onClick={() => copyToClipboard('+48 691 409 400', 'phone')}>
+                      <motion.div 
+                        className="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center shadow-lg shadow-orange-500/20"
+                        whileHover={{ scale: 1.1, rotate: -5 }}
+                        transition={{ type: 'spring', stiffness: 400 }}
+                      >
+                        <Phone className="w-6 h-6 text-white" />
+                      </motion.div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm text-gray-400 mb-1">Telefon</p>
+                        <p className="text-white font-medium group-hover/item:text-orange-400 transition-colors">
+                          +48 691 409 400
+                        </p>
+                      </div>
+                      <motion.div
+                        className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        {copiedField === 'phone' ? (
+                          <Check className="w-4 h-4 text-green-400" />
+                        ) : (
+                          <Copy className="w-4 h-4 text-gray-400 group-hover/item:text-white transition-colors" />
+                        )}
+                      </motion.div>
+                    </div>
+                  </motion.div>
+
+                  {/* Czas odpowiedzi */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.5 }}
+                  >
+                    <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-transparent">
+                      <motion.div 
+                        className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-green-500/20"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ type: 'spring', stiffness: 400 }}
+                      >
+                        <Clock className="w-6 h-6 text-white" />
+                      </motion.div>
+                      <div className="flex-1">
+                        <p className="text-sm text-gray-400 mb-1">Czas odpowiedzi</p>
+                        <p className="text-white font-medium">Do 24 godzin</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="relative flex h-3 w-3">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                        </span>
+                        <span className="text-xs text-green-400">Online</span>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
             </div>
 
-            <div className="glass rounded-xl p-6">
-              <h4 className="text-lg font-semibold text-white mb-3">Czas odpowiedzi</h4>
-              <p className="text-gray-400 text-sm">
-                Zwykle odpowiadam w ciągu kilku godzin. W dni robocze możesz liczyć na szybką odpowiedź.
-              </p>
-            </div>
+            {/* Dodatkowa karta - preferowany kontakt */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.6 }}
+              className="glass rounded-xl p-6 border border-white/5"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-yellow-500/20 flex items-center justify-center flex-shrink-0">
+                  <MessageSquare className="w-5 h-5 text-yellow-400" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-white mb-2">Preferuję email</h4>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    Najszybciej odpowiadam na wiadomości email. Telefon rezerwuję dla pilnych spraw.
+                    Opisz swój projekt w formularzu, a odezwę się z propozycją.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Social proof */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.7 }}
+              className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20"
+            >
+              <div className="flex -space-x-2">
+                {[1, 2, 3].map((i) => (
+                  <div 
+                    key={i}
+                    className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-600 to-gray-700 border-2 border-gray-900 flex items-center justify-center text-xs font-bold text-white"
+                  >
+                    {['M', 'A', 'K'][i-1]}
+                  </div>
+                ))}
+              </div>
+              <div className="flex-1">
+                <p className="text-sm text-white font-medium">Zaufali mi klienci</p>
+                <p className="text-xs text-gray-400">Dołącz do grona zadowolonych</p>
+              </div>
+              <div className="text-right">
+                <p className="text-2xl font-bold text-yellow-400">100%</p>
+                <p className="text-xs text-gray-400">satysfakcji</p>
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* Contact Form z efektem składania */}

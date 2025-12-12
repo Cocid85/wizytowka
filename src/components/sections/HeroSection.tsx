@@ -283,25 +283,88 @@ export default function HeroSection() {
                 {/* Code content */}
                 <div className="p-6 font-mono text-sm">
                   <pre className="text-gray-300">
-                    {codeSnippet.split('\n').map((line, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.8 + i * 0.1 }}
-                        className="leading-relaxed"
-                      >
-                        <span className="text-gray-600 mr-4 select-none">{i + 1}</span>
-                        <span dangerouslySetInnerHTML={{ 
-                          __html: line
-                            .replace(/(const|return)/g, '<span class="text-purple-400">$1</span>')
-                            .replace(/(".*?")/g, '<span class="text-green-400">$1</span>')
-                            .replace(/(\[.*?\])/g, '<span class="text-yellow-400">$1</span>')
-                            .replace(/(true|false)/g, '<span class="text-orange-400">$1</span>')
-                            .replace(/(createProject|transformToReality)/g, '<span class="text-blue-400">$1</span>')
-                        }} />
-                      </motion.div>
-                    ))}
+                    {codeSnippet.split('\n').map((line, i) => {
+                      // Parse line into tokens with syntax highlighting
+                      const parseLine = (text: string) => {
+                        const parts: Array<{ text: string; className?: string }> = [];
+                        let remaining = text;
+                        
+                        // Match patterns in order of specificity
+                        const patterns = [
+                          { regex: /(const|return)\b/g, className: 'text-purple-400' },
+                          { regex: /(".*?")/g, className: 'text-green-400' },
+                          { regex: /(\[.*?\])/g, className: 'text-yellow-400' },
+                          { regex: /(true|false)\b/g, className: 'text-orange-400' },
+                          { regex: /(createProject|transformToReality)\b/g, className: 'text-blue-400' },
+                        ];
+                        
+                        let lastIndex = 0;
+                        const matches: Array<{ start: number; end: number; className: string }> = [];
+                        
+                        patterns.forEach(({ regex, className }) => {
+                          let match;
+                          regex.lastIndex = 0;
+                          while ((match = regex.exec(remaining)) !== null) {
+                            matches.push({
+                              start: match.index,
+                              end: match.index + match[0].length,
+                              className,
+                            });
+                          }
+                        });
+                        
+                        // Sort matches by start position
+                        matches.sort((a, b) => a.start - b.start);
+                        
+                        // Remove overlapping matches (keep first)
+                        const filteredMatches: typeof matches = [];
+                        for (const match of matches) {
+                          const overlaps = filteredMatches.some(
+                            m => (match.start < m.end && match.end > m.start)
+                          );
+                          if (!overlaps) {
+                            filteredMatches.push(match);
+                          }
+                        }
+                        
+                        // Build parts array
+                        filteredMatches.forEach((match) => {
+                          if (lastIndex < match.start) {
+                            parts.push({ text: remaining.slice(lastIndex, match.start) });
+                          }
+                          parts.push({ 
+                            text: remaining.slice(match.start, match.end), 
+                            className: match.className 
+                          });
+                          lastIndex = match.end;
+                        });
+                        
+                        if (lastIndex < remaining.length) {
+                          parts.push({ text: remaining.slice(lastIndex) });
+                        }
+                        
+                        return parts.length > 0 ? parts : [{ text: remaining }];
+                      };
+                      
+                      const parts = parseLine(line);
+                      
+                      return (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.8 + i * 0.1 }}
+                          className="leading-relaxed"
+                        >
+                          <span className="text-gray-600 mr-4 select-none">{i + 1}</span>
+                          {parts.map((part, j) => (
+                            <span key={j} className={part.className}>
+                              {part.text}
+                            </span>
+                          ))}
+                        </motion.div>
+                      );
+                    })}
                   </pre>
                 </div>
 
