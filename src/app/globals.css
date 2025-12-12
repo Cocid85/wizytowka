@@ -91,6 +91,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Toast container fix */
+.toaster-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.toaster-container > div {
+  pointer-events: auto;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;

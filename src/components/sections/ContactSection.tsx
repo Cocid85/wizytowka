@@ -185,7 +185,10 @@ export default function ContactSection() {
         setFoldState('success');
         setSubmitStatus('success');
         reset();
-        toast.success('Wiadomość została wysłana pomyślnie!');
+        // Opóźnij toast, żeby uniknąć problemów z DOM
+        setTimeout(() => {
+          toast.success('Wiadomość została wysłana pomyślnie!');
+        }, 100);
       }, 2800);
       
       setTimeout(() => {
@@ -197,7 +200,10 @@ export default function ContactSection() {
       console.error('Form submission error:', error);
       setSubmitStatus('error');
       setFoldState('idle');
-      toast.error(error instanceof Error ? error.message : 'Wystąpił błąd. Spróbuj ponownie.');
+      // Opóźnij toast, żeby uniknąć problemów z DOM
+      setTimeout(() => {
+        toast.error(error instanceof Error ? error.message : 'Wystąpił błąd. Spróbuj ponownie.');
+      }, 100);
     } finally {
       setIsSubmitting(false);
     }

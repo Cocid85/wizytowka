@@ -35,23 +35,36 @@ export default function RootLayout({
         {children}
         <Toaster
           position="top-right"
+          containerClassName="toaster-container"
+          containerStyle={{
+            zIndex: 9999,
+          }}
           toastOptions={{
+            duration: 4000,
             style: {
               background: 'rgba(17, 24, 39, 0.95)',
               color: '#fff',
-              border: '1px solid rgba(139, 92, 246, 0.3)',
+              border: '1px solid rgba(239, 68, 68, 0.3)',
               backdropFilter: 'blur(10px)',
+              borderRadius: '12px',
+              padding: '16px',
             },
             success: {
               iconTheme: {
-                primary: '#10b981',
-                secondary: '#fff',
+                primary: '#00ff41',
+                secondary: '#000',
+              },
+              style: {
+                border: '1px solid rgba(0, 255, 65, 0.3)',
               },
             },
             error: {
               iconTheme: {
                 primary: '#ef4444',
                 secondary: '#fff',
+              },
+              style: {
+                border: '1px solid rgba(239, 68, 68, 0.5)',
               },
             },
           }}
