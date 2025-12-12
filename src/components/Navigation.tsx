@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Code2, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const navItems = [
   { label: 'Usługi', href: '#uslugi' },
@@ -80,14 +81,20 @@ export default function Navigation() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <motion.div 
-                className="w-9 h-9 rounded-lg bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center shadow-lg shadow-yellow-500/20"
+              <motion.div
                 whileHover={{ rotate: 5 }}
                 transition={{ type: 'spring', stiffness: 400 }}
+                className="relative"
               >
-                <Code2 className="w-5 h-5 text-black" />
+                <Image
+                  src="/image/logo_svg_jasne.svg"
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                  className="h-10 w-auto"
+                  priority
+                />
               </motion.div>
-              <span className="text-xl font-bold text-gradient">{'<Dev />'}</span>
             </motion.a>
 
             {/* Desktop Menu */}
@@ -117,7 +124,7 @@ export default function Navigation() {
                   )}
                   
                   {/* Hover underline */}
-                  <span className={`absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full transition-transform duration-300 origin-left ${
+                  <span className={`absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-to-r from-red-500 to-[#00ff41] rounded-full transition-transform duration-300 origin-left ${
                     activeSection === item.href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                   }`} />
                 </motion.a>
@@ -132,7 +139,7 @@ export default function Navigation() {
               transition={{ delay: 0.4 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg font-semibold text-sm text-black shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/30 transition-shadow"
+              className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-red-500 to-red-600 rounded-lg font-semibold text-sm text-white shadow-lg shadow-red-500/20 hover:shadow-red-500/30 transition-shadow"
             >
               Kontakt
               <ArrowUpRight className="w-4 h-4" />
@@ -201,10 +208,15 @@ export default function Navigation() {
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-white/10">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center">
-                      <Code2 className="w-4 h-4 text-black" />
+                    <div className="relative">
+                      <Image
+                        src="/image/logo_svg_jasne.svg"
+                        alt="Logo"
+                        width={32}
+                        height={32}
+                        className="h-8 w-auto"
+                      />
                     </div>
-                    <span className="text-lg font-bold text-gradient">{'<Dev />'}</span>
                   </div>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -227,13 +239,13 @@ export default function Navigation() {
                         onClick={() => setIsMobileMenuOpen(false)}
                         className={`flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all ${
                           activeSection === item.href
-                            ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/10 text-white border border-yellow-500/30'
+                            ? 'bg-gradient-to-r from-red-500/20 to-red-600/10 text-white border border-red-500/30'
                             : 'text-gray-400 hover:text-white hover:bg-white/5'
                         }`}
                       >
                         <span className={`w-2 h-2 rounded-full ${
                           activeSection === item.href 
-                            ? 'bg-yellow-500' 
+                            ? 'bg-red-500' 
                             : 'bg-gray-600'
                         }`} />
                         <span className="font-medium">{item.label}</span>
@@ -250,7 +262,7 @@ export default function Navigation() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl font-semibold text-black"
+                    className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl font-semibold text-white"
                   >
                     Skontaktuj się
                     <ArrowUpRight className="w-5 h-5" />

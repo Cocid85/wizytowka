@@ -29,7 +29,7 @@ const projects: Project[] = [
     url: 'https://kravmaga-aplikacja.pl',
     technologies: ['Flutter', 'Dart', 'Firebase', 'Web', 'Android'],
     features: ['Panel kursanta', 'System obecności', 'Płatności online', 'Aplikacja Android'],
-    gradient: 'from-yellow-500 via-orange-500 to-red-600',
+    gradient: 'from-red-500 via-red-600 to-black',
   },
   {
     id: 'akademia-web',
@@ -40,7 +40,7 @@ const projects: Project[] = [
     url: 'https://akademia-samoobrony.pl',
     technologies: ['Next.js', 'TypeScript', 'Tailwind', 'Framer Motion'],
     features: ['System zapisów', 'Galeria zdjęć', 'Blog', 'SEO optymalizacja'],
-    gradient: 'from-red-500 via-orange-500 to-yellow-500',
+    gradient: 'from-white via-red-500 to-[#00ff41]',
   },
   {
     id: 'holisticstar',
@@ -57,11 +57,11 @@ const projects: Project[] = [
     id: 'djluca',
     title: 'djluca.pl',
     description: 'Strona DJ-a i producenta muzycznego',
-    longDescription: 'Dynamiczna strona dla DJ-a z portfolio, odtwarzaczem muzyki i formularzem bookingowym na wydarzenia.',
+    longDescription: 'Dynamiczna strona dla DJ-a z portfolio i formularzem bookingowym na wydarzenia.',
     type: 'web',
     url: 'https://djluca.pl',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind', 'Audio API'],
-    features: ['Odtwarzacz muzyki', 'Formularz bookingu', 'Galeria eventów', 'Animacje'],
+    technologies: ['Next.js', 'TypeScript', 'Tailwind'],
+    features: ['Formularz bookingu', 'Galeria eventów', 'Animacje'],
     gradient: 'from-cyan-500 via-blue-500 to-purple-500',
   },
 ];
@@ -135,7 +135,7 @@ function BrowserMockup({ project, isHovered }: { project: Project; isHovered: bo
         <div className="flex items-center gap-2 px-4 py-3 bg-gray-950 border-b border-gray-800">
           <div className="flex gap-1.5">
             <div className="w-3 h-3 rounded-full bg-red-500" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500" />
+            <div className="w-3 h-3 rounded-full bg-white" />
             <div className="w-3 h-3 rounded-full bg-green-500" />
           </div>
           <div className="flex-1 mx-4">
@@ -227,7 +227,7 @@ function HybridMockup({ project, isHovered }: { project: Project; isHovered: boo
           <div className="flex items-center gap-2 px-3 py-2 bg-gray-950 border-b border-gray-800">
             <div className="flex gap-1">
               <div className="w-2 h-2 rounded-full bg-red-500" />
-              <div className="w-2 h-2 rounded-full bg-yellow-500" />
+              <div className="w-2 h-2 rounded-full bg-red-500" />
               <div className="w-2 h-2 rounded-full bg-green-500" />
             </div>
             <div className="flex-1 mx-2">
@@ -392,7 +392,7 @@ function ProjectCard({ project, index, inView }: { project: Project; index: numb
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: index * 0.15 + 0.15 }}
-            className="text-3xl md:text-4xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors"
+            className="text-3xl md:text-4xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors"
           >
             {project.title}
           </motion.h3>
@@ -438,7 +438,7 @@ function ProjectCard({ project, index, inView }: { project: Project; index: numb
                   index % 2 === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
               >
-                <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
+                <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
                 <span>{feature}</span>
               </div>
             ))}
@@ -452,7 +452,7 @@ function ProjectCard({ project, index, inView }: { project: Project; index: numb
               transition={{ delay: index * 0.15 + 0.35 }}
             >
               <span
-                className={`inline-flex items-center gap-2 text-yellow-400 font-medium group-hover:gap-3 transition-all ${
+                className={`inline-flex items-center gap-2 text-red-400 font-medium group-hover:gap-3 transition-all ${
                   index % 2 === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
               >
@@ -477,8 +477,8 @@ export default function PortfolioSection() {
     <section id="portfolio" className="py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-yellow-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-[#00ff41]/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -531,7 +531,7 @@ export default function PortfolioSection() {
           </p>
           <motion.a
             href="#kontakt"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl font-semibold text-black"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl font-semibold text-white"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >

@@ -11,28 +11,28 @@ const services = [
     title: 'Aplikacje mobilne',
     description: 'Natywne aplikacje iOS i Android w Flutter. Szybkie, płynne i piękne interfejsy.',
     features: ['Flutter/Dart', 'Firebase', 'Offline-first', 'Push notifications'],
-    gradient: 'from-yellow-500 to-yellow-600',
+    gradient: 'from-red-500 to-red-600',
   },
   {
     icon: Globe,
     title: 'Strony WWW',
     description: 'Nowoczesne strony z Next.js i React. SEO-friendly, szybkie i responsywne.',
     features: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS'],
-    gradient: 'from-yellow-400 to-yellow-500',
+    gradient: 'from-gray-900 to-black',
   },
   {
     icon: Server,
     title: 'Systemy webowe',
     description: 'Zaawansowane aplikacje webowe z panelami admin, dashboardami i analityką.',
     features: ['Full-stack', 'Firebase Admin', 'Google Analytics', 'Recharts'],
-    gradient: 'from-yellow-600 to-yellow-700',
+    gradient: 'from-red-600 to-black',
   },
   {
     icon: Plug,
     title: 'Integracje API',
     description: 'Integracje z zewnętrznymi serwisami, automatyzacje i webhooki.',
     features: ['REST API', 'Webhooks', 'Email services', 'Social media APIs'],
-    gradient: 'from-yellow-500 to-yellow-400',
+    gradient: 'from-[#00ff41] to-green-500',
   },
 ];
 
@@ -49,7 +49,7 @@ export default function ServicesSection() {
         <motion.div
           className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(234,179,8,0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(239,68,68,0.15) 0%, transparent 70%)',
           }}
           animate={{
             scale: [1, 1.2, 1],
@@ -93,7 +93,7 @@ export default function ServicesSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="glass rounded-xl p-6 group"
               >
-              <div className={`w-14 h-14 rounded-lg bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+              <div className={`w-14 h-14 rounded-lg bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform border border-white/10`}>
                 <service.icon className="w-7 h-7 text-white" />
               </div>
               
@@ -103,7 +103,7 @@ export default function ServicesSection() {
               <ul className="space-y-2">
                 {service.features.map((feature) => (
                   <li key={feature} className="text-sm text-gray-500 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
                     {feature}
                   </li>
                 ))}

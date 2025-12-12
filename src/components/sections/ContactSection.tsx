@@ -46,7 +46,7 @@ function FormContent({
           type="text"
           id="name"
           disabled={foldState !== 'idle'}
-          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors disabled:opacity-50"
+          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors disabled:opacity-50"
           placeholder="Jan Kowalski"
           suppressHydrationWarning
         />
@@ -64,7 +64,7 @@ function FormContent({
           type="email"
           id="email"
           disabled={foldState !== 'idle'}
-          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors disabled:opacity-50"
+          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors disabled:opacity-50"
           placeholder="jan@example.com"
           suppressHydrationWarning
         />
@@ -82,7 +82,7 @@ function FormContent({
           id="message"
           rows={5}
           disabled={foldState !== 'idle'}
-          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors resize-none disabled:opacity-50"
+          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors resize-none disabled:opacity-50"
           placeholder="Opisz swój projekt..."
           suppressHydrationWarning
         />
@@ -94,7 +94,7 @@ function FormContent({
       <motion.button
         type="submit"
         disabled={isSubmitting || foldState !== 'idle'}
-        className="w-full px-6 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg font-semibold text-black flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full px-6 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-lg font-semibold text-white flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         whileHover={{ scale: isSubmitting || foldState !== 'idle' ? 1 : 1.02 }}
         whileTap={{ scale: isSubmitting || foldState !== 'idle' ? 1 : 0.98 }}
       >
@@ -154,13 +154,27 @@ export default function ContactSection() {
     setSubmitStatus('idle');
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 600));
-      
       // Zmierz wysokość przed składaniem
       if (formContainerRef.current) {
         setFormHeight(formContainerRef.current.offsetHeight);
       }
       
+      // Wysyłanie formularza do API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Błąd podczas wysyłania wiadomości');
+      }
+
+      // Animacja składania koperty
       setFoldState('folding');
       
       setTimeout(() => {
@@ -171,6 +185,7 @@ export default function ContactSection() {
         setFoldState('success');
         setSubmitStatus('success');
         reset();
+        toast.success('Wiadomość została wysłana pomyślnie!');
       }, 2800);
       
       setTimeout(() => {
@@ -179,9 +194,10 @@ export default function ContactSection() {
       }, 11000);
       
     } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
       setFoldState('idle');
-      toast.error('Wystąpił błąd. Spróbuj ponownie.');
+      toast.error(error instanceof Error ? error.message : 'Wystąpił błąd. Spróbuj ponownie.');
     } finally {
       setIsSubmitting(false);
     }
@@ -255,7 +271,7 @@ export default function ContactSection() {
             {/* Główna karta z danymi */}
             <div className="relative group">
               {/* Glow effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-500 via-white/20 to-[#00ff41] rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
               
               <div className="relative glass rounded-2xl p-8 border border-white/10 overflow-hidden">
                 {/* Background pattern */}
@@ -269,7 +285,7 @@ export default function ContactSection() {
                 <h3 className="text-2xl font-bold text-white mb-8 relative">
                   Dane kontaktowe
                   <motion.div 
-                    className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full"
+                    className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-red-500 to-[#00ff41] rounded-full"
                     initial={{ width: 0 }}
                     animate={inView ? { width: '80px' } : {}}
                     transition={{ delay: 0.5, duration: 0.6 }}
@@ -284,18 +300,18 @@ export default function ContactSection() {
                     transition={{ delay: 0.3 }}
                     className="group/item"
                   >
-                    <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300 cursor-pointer border border-transparent hover:border-yellow-500/30"
+                    <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300 cursor-pointer border border-transparent hover:border-red-500/30"
                          onClick={() => copyToClipboard('ms.akademiaair@gmail.com', 'email')}>
                       <motion.div 
-                        className="w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center shadow-lg shadow-yellow-500/20"
+                        className="w-14 h-14 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-lg shadow-red-500/20"
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ type: 'spring', stiffness: 400 }}
                       >
-                        <Mail className="w-6 h-6 text-black" />
+                        <Mail className="w-6 h-6 text-white" />
                       </motion.div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm text-gray-400 mb-1">Email</p>
-                        <p className="text-white font-medium truncate group-hover/item:text-yellow-400 transition-colors">
+                        <p className="text-white font-medium truncate group-hover/item:text-red-400 transition-colors">
                           ms.akademiaair@gmail.com
                         </p>
                       </div>
@@ -320,18 +336,18 @@ export default function ContactSection() {
                     transition={{ delay: 0.4 }}
                     className="group/item"
                   >
-                    <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300 cursor-pointer border border-transparent hover:border-orange-500/30"
+                    <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300 cursor-pointer border border-transparent hover:border-[#00ff41]/30"
                          onClick={() => copyToClipboard('+48 691 409 400', 'phone')}>
                       <motion.div 
-                        className="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center shadow-lg shadow-orange-500/20"
+                        className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00ff41] to-green-500 flex items-center justify-center shadow-lg shadow-[#00ff41]/20"
                         whileHover={{ scale: 1.1, rotate: -5 }}
                         transition={{ type: 'spring', stiffness: 400 }}
                       >
-                        <Phone className="w-6 h-6 text-white" />
+                        <Phone className="w-6 h-6 text-black" />
                       </motion.div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm text-gray-400 mb-1">Telefon</p>
-                        <p className="text-white font-medium group-hover/item:text-orange-400 transition-colors">
+                        <p className="text-white font-medium group-hover/item:text-[#00ff41] transition-colors">
                           +48 691 409 400
                         </p>
                       </div>
@@ -388,8 +404,8 @@ export default function ContactSection() {
               className="glass rounded-xl p-6 border border-white/5"
             >
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-yellow-500/20 flex items-center justify-center flex-shrink-0">
-                  <MessageSquare className="w-5 h-5 text-yellow-400" />
+                <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                  <MessageSquare className="w-5 h-5 text-red-400" />
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold text-white mb-2">Preferuję email</h4>
@@ -406,7 +422,7 @@ export default function ContactSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.7 }}
-              className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20"
+              className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-red-500/10 to-[#00ff41]/10 border border-red-500/20"
             >
               <div className="flex -space-x-2">
                 {[1, 2, 3].map((i) => (
@@ -423,7 +439,7 @@ export default function ContactSection() {
                 <p className="text-xs text-gray-400">Dołącz do grona zadowolonych</p>
               </div>
               <div className="text-right">
-                <p className="text-2xl font-bold text-yellow-400">100%</p>
+                <p className="text-2xl font-bold text-[#00ff41]">100%</p>
                 <p className="text-xs text-gray-400">satysfakcji</p>
               </div>
             </motion.div>
@@ -540,7 +556,7 @@ export default function ContactSection() {
                           transform: 'rotateY(180deg)',
                         }}
                       >
-                        <div className="w-full h-full bg-gradient-to-br from-yellow-400 via-amber-500 to-orange-500">
+                        <div className="w-full h-full bg-gradient-to-br from-red-500 via-red-600 to-black">
                           {/* Tekstura papieru */}
                           <div 
                             className="absolute inset-0 opacity-30 mix-blend-overlay"
@@ -588,7 +604,7 @@ export default function ContactSection() {
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: [0, 1.5, 1.2], opacity: [0, 0.6, 0.4] }}
                     transition={{ duration: 1 }}
-                    className="absolute w-64 h-64 bg-gradient-to-r from-yellow-500/30 via-green-500/30 to-emerald-500/30 blur-3xl rounded-full"
+                    className="absolute w-64 h-64 bg-gradient-to-r from-red-500/30 via-[#00ff41]/30 to-white/20 blur-3xl rounded-full"
                   />
 
                   {/* Checkmark */}
@@ -620,7 +636,7 @@ export default function ContactSection() {
                     transition={{ delay: 0.4 }}
                     className="text-3xl md:text-4xl font-bold mb-3"
                   >
-                    <span className="bg-gradient-to-r from-yellow-400 via-green-400 to-emerald-400 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-white via-red-500 to-[#00ff41] bg-clip-text text-transparent">
                       Wiadomość wysłana!
                     </span>
                   </motion.h3>

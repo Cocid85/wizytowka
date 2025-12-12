@@ -10,17 +10,17 @@ const steps = [
     icon: FileText,
     title: 'Brief',
     description: 'Omawiamy Twoje potrzeby, cele i wymagania. Ustalamy zakres projektu.',
-    color: 'from-amber-500 to-orange-500',
-    bgColor: 'bg-amber-500',
-    shadowColor: 'shadow-amber-500/30',
+    color: 'from-red-500 to-red-600',
+    bgColor: 'bg-red-500',
+    shadowColor: 'shadow-red-500/30',
   },
   {
     icon: Palette,
     title: 'Projekt',
     description: "Tworzę mockupy, wireframe'y i planuję architekturę rozwiązania.",
-    color: 'from-orange-500 to-red-500',
-    bgColor: 'bg-orange-500',
-    shadowColor: 'shadow-orange-500/30',
+    color: 'from-red-600 to-black',
+    bgColor: 'bg-red-600',
+    shadowColor: 'shadow-red-600/30',
   },
   {
     icon: Code,
@@ -141,7 +141,7 @@ export default function ProcessSection() {
           <div className="relative mb-8">
             <div className="absolute top-6 left-0 right-0 h-1 bg-gray-800 rounded-full" />
             <motion.div
-              className="absolute top-6 left-0 h-1 bg-gradient-to-r from-amber-500 via-orange-500 via-red-500 to-rose-500 rounded-full"
+              className="absolute top-6 left-0 h-1 bg-gradient-to-r from-red-500 via-white/30 to-[#00ff41] rounded-full"
               initial={{ width: '0%' }}
               animate={inView ? { width: `${(Math.max(0, activeStep) / (steps.length - 1)) * 100}%` } : {}}
               transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -257,8 +257,8 @@ export default function ProcessSection() {
                       className="absolute -top-2 -right-2"
                     >
                       <span className="flex h-4 w-4">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-4 w-4 bg-amber-500" />
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500" />
                       </span>
                     </motion.div>
                   )}
@@ -285,7 +285,7 @@ export default function ProcessSection() {
             {/* Linia pionowa */}
             <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-800" />
             <motion.div
-              className="absolute left-6 top-0 w-0.5 bg-gradient-to-b from-amber-500 via-orange-500 via-red-500 to-rose-500"
+              className="absolute left-6 top-0 w-0.5 bg-gradient-to-b from-red-500 via-white/30 to-[#00ff41]"
               initial={{ height: '0%' }}
               animate={inView ? { height: `${(Math.max(0, activeStep + 1) / steps.length) * 100}%` } : {}}
               transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -339,7 +339,7 @@ export default function ProcessSection() {
                           <motion.span
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            className="px-2 py-0.5 text-xs font-medium bg-amber-500/20 text-amber-400 rounded-full"
+                            className="px-2 py-0.5 text-xs font-medium bg-red-500/20 text-red-400 rounded-full"
                           >
                             W trakcie
                           </motion.span>

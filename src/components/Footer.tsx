@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 import { 
-  Code2, 
   Github, 
   Linkedin, 
   Mail, 
@@ -39,7 +39,7 @@ const socials = [
     name: 'Email', 
     href: 'mailto:ms.akademiaair@gmail.com', 
     icon: Mail,
-    color: 'hover:bg-yellow-500 hover:text-black',
+    color: 'hover:bg-red-500 hover:text-white',
   },
 ];
 
@@ -61,7 +61,7 @@ export default function Footer() {
       <div className="absolute inset-0 bg-gradient-to-t from-black via-gray-900/50 to-transparent pointer-events-none" />
       
       {/* Top decorative line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-500/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent" />
 
       <div className="relative container mx-auto px-4">
         {/* CTA Section */}
@@ -79,7 +79,7 @@ export default function Footer() {
           </p>
           <motion.a
             href="#kontakt"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl font-semibold text-black"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl font-semibold text-white"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -89,56 +89,66 @@ export default function Footer() {
         </motion.div>
 
         {/* Main Footer Content */}
-        <div className="py-12 grid md:grid-cols-4 gap-12">
-          {/* Brand */}
+        <div className="py-12 grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
+          {/* Column 1 - Logo */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1 }}
-            className="md:col-span-2"
+            className="flex items-center justify-center md:justify-start"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center">
-                <Code2 className="w-5 h-5 text-black" />
-              </div>
-              <span className="text-2xl font-bold text-gradient">{'<Dev />'}</span>
-            </div>
-            <p className="text-gray-400 mb-6 max-w-sm leading-relaxed">
-              Tworzę nowoczesne aplikacje webowe i mobilne z pasją do czystego kodu 
-              i dbałością o każdy detal. Profesjonalizm i jakość to moje priorytety.
-            </p>
-            
-            {/* Contact info */}
-            <div className="space-y-3">
-              <a 
-                href="mailto:ms.akademiaair@gmail.com" 
-                className="flex items-center gap-3 text-gray-400 hover:text-yellow-400 transition-colors group"
-              >
-                <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span className="text-sm">ms.akademiaair@gmail.com</span>
-              </a>
-              <a 
-                href="tel:+48691409400" 
-                className="flex items-center gap-3 text-gray-400 hover:text-yellow-400 transition-colors group"
-              >
-                <Phone className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span className="text-sm">+48 691 409 400</span>
-              </a>
-              <div className="flex items-center gap-3 text-gray-500">
-                <MapPin className="w-4 h-4" />
-                <span className="text-sm">Polska</span>
-              </div>
+            <div className="relative">
+              <Image
+                src="/image/logo_svg_jasne.svg"
+                alt="Logo"
+                width={200}
+                height={200}
+                className="w-full max-w-[200px] h-auto"
+                priority
+              />
             </div>
           </motion.div>
 
-          {/* Navigation */}
+          {/* Column 2 - Contact Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 }}
           >
             <h4 className="text-white font-semibold mb-6 flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
+              <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
+              Kontakt
+            </h4>
+            <div className="space-y-3">
+              <a 
+                href="mailto:ms.akademiaair@gmail.com" 
+                className="flex items-center gap-3 text-gray-400 hover:text-red-400 transition-colors group"
+              >
+                <Mail className="w-4 h-4 group-hover:scale-110 transition-transform flex-shrink-0" />
+                <span className="text-sm">ms.akademiaair@gmail.com</span>
+              </a>
+              <a 
+                href="tel:+48691409400" 
+                className="flex items-center gap-3 text-gray-400 hover:text-red-400 transition-colors group"
+              >
+                <Phone className="w-4 h-4 group-hover:scale-110 transition-transform flex-shrink-0" />
+                <span className="text-sm">+48 691 409 400</span>
+              </a>
+              <div className="flex items-center gap-3 text-gray-500">
+                <MapPin className="w-4 h-4 flex-shrink-0" />
+                <span className="text-sm">Polska</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Column 3 - Navigation */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.3 }}
+          >
+            <h4 className="text-white font-semibold mb-6 flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
               Nawigacja
             </h4>
             <ul className="space-y-3">
@@ -147,13 +157,13 @@ export default function Footer() {
                   key={item.name}
                   initial={{ opacity: 0, x: -10 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.3 + index * 0.05 }}
+                  transition={{ delay: 0.4 + index * 0.05 }}
                 >
                   <a
                     href={item.href}
                     className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group"
                   >
-                    <span className="w-0 group-hover:w-2 h-px bg-yellow-500 transition-all duration-300" />
+                    <span className="w-0 group-hover:w-2 h-px bg-red-500 transition-all duration-300" />
                     {item.name}
                   </a>
                 </motion.li>
@@ -161,14 +171,14 @@ export default function Footer() {
             </ul>
           </motion.div>
 
-          {/* Social & Back to top */}
+          {/* Column 4 - Social & Back to top */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.4 }}
           >
             <h4 className="text-white font-semibold mb-6 flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
+              <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
               Social
             </h4>
             <div className="flex gap-3 mb-8">
@@ -178,7 +188,7 @@ export default function Footer() {
                   href={social.href}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.4 + index * 0.1 }}
+                  transition={{ delay: 0.5 + index * 0.1 }}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   className={`w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 transition-all duration-300 ${social.color}`}
@@ -194,7 +204,7 @@ export default function Footer() {
               onClick={scrollToTop}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:border-yellow-500/30 transition-all group"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:border-red-500/30 transition-all group"
             >
               <ChevronUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
               <span className="text-sm">Do góry</span>
@@ -231,8 +241,8 @@ export default function Footer() {
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-yellow-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-red-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-[#00ff41]/5 rounded-full blur-3xl pointer-events-none" />
     </footer>
   );
 }

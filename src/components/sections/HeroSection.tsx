@@ -106,7 +106,7 @@ export default function HeroSection() {
           {[...Array(30)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-yellow-400/60 rounded-full"
+              className="absolute w-1 h-1 bg-[#00ff41]/60 rounded-full"
               initial={{
                 x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
                 y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
@@ -158,20 +158,20 @@ export default function HeroSection() {
               >
                 <span className="block text-white">Tworzę</span>
                 <span className="relative inline-block">
-                  <span className="text-gradient bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+                  <span className="text-gradient bg-gradient-to-r from-white via-red-500 to-[#00ff41] bg-clip-text text-transparent">
                     aplikacje
                   </span>
                   {/* Glitch layers */}
                   {glitchActive && (
                     <>
                       <span 
-                        className="absolute inset-0 text-gradient bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+                        className="absolute inset-0 text-gradient bg-gradient-to-r from-[#00ff41] to-green-500 bg-clip-text text-transparent"
                         style={{ transform: 'translate(-2px, -2px)', opacity: 0.8 }}
                       >
                         aplikacje
                       </span>
                       <span 
-                        className="absolute inset-0 text-gradient bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent"
+                        className="absolute inset-0 text-gradient bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent"
                         style={{ transform: 'translate(2px, 2px)', opacity: 0.8 }}
                       >
                         aplikacje
@@ -180,7 +180,7 @@ export default function HeroSection() {
                   )}
                 </span>
                 <span className="block text-white">
-                  które <span className="text-yellow-400">działają</span>
+                  które <span className="text-[#00ff41]">działają</span>
                 </span>
               </motion.h1>
             </div>
@@ -205,7 +205,7 @@ export default function HeroSection() {
             >
               <motion.a
                 href="#kontakt"
-                className="group relative px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl font-semibold text-black text-center overflow-hidden"
+                className="group relative px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl font-semibold text-white text-center overflow-hidden"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -214,7 +214,7 @@ export default function HeroSection() {
                   <ArrowDown className="w-4 h-4 rotate-[-90deg] group-hover:translate-x-1 transition-transform" />
                 </span>
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500"
+                  className="absolute inset-0 bg-gradient-to-r from-red-600 to-[#00ff41]"
                   initial={{ x: '100%' }}
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
@@ -239,7 +239,6 @@ export default function HeroSection() {
               transition={{ delay: 1, duration: 0.6 }}
             >
               {[
-                { value: '50+', label: 'Projektów' },
                 { value: '5+', label: 'Lat doświadczenia' },
                 { value: '100%', label: 'Satysfakcji' },
               ].map((stat, i) => (
@@ -274,8 +273,8 @@ export default function HeroSection() {
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-black/20">
                   <div className="flex gap-2">
                     <div className="w-3 h-3 rounded-full bg-red-500" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                    <div className="w-3 h-3 rounded-full bg-white" />
+                    <div className="w-3 h-3 rounded-full bg-[#00ff41]" />
                   </div>
                   <span className="text-xs text-gray-500 ml-2 font-mono">developer.ts</span>
                 </div>
@@ -291,11 +290,11 @@ export default function HeroSection() {
                         
                         // Match patterns in order of specificity
                         const patterns = [
-                          { regex: /(const|return)\b/g, className: 'text-purple-400' },
-                          { regex: /(".*?")/g, className: 'text-green-400' },
-                          { regex: /(\[.*?\])/g, className: 'text-yellow-400' },
-                          { regex: /(true|false)\b/g, className: 'text-orange-400' },
-                          { regex: /(createProject|transformToReality)\b/g, className: 'text-blue-400' },
+                          { regex: /(const|return)\b/g, className: 'text-red-400' },
+                          { regex: /(".*?")/g, className: 'text-[#00ff41]' },
+                          { regex: /(\[.*?\])/g, className: 'text-white' },
+                          { regex: /(true|false)\b/g, className: 'text-red-500' },
+                          { regex: /(createProject|transformToReality)\b/g, className: 'text-[#00ff41]' },
                         ];
                         
                         let lastIndex = 0;
@@ -419,7 +418,7 @@ export default function HeroSection() {
 
               {/* Glow effect behind card */}
               <div 
-                className="absolute -inset-4 bg-gradient-to-r from-yellow-500/20 via-orange-500/20 to-red-500/20 rounded-3xl blur-2xl -z-10"
+                className="absolute -inset-4 bg-gradient-to-r from-red-500/20 via-white/10 to-[#00ff41]/20 rounded-3xl blur-2xl -z-10"
                 style={{ transform: 'translateZ(-50px)' }}
               />
             </motion.div>

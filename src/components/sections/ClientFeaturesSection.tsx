@@ -136,7 +136,7 @@ function DashboardMockup() {
           {[40, 65, 45, 80, 55, 90, 70].map((h, i) => (
             <motion.div
               key={i}
-              className="flex-1 bg-gradient-to-t from-yellow-500/80 to-yellow-500/20 rounded-t"
+              className="flex-1 bg-gradient-to-t from-red-500/80 to-red-500/20 rounded-t"
               initial={{ height: 0 }}
               animate={{ height: `${h}%` }}
               transition={{ delay: 0.3 + i * 0.05, duration: 0.5 }}
@@ -179,7 +179,7 @@ function ReservationsMockup() {
               transition={{ delay: day * 0.01 }}
               className={`aspect-square rounded flex items-center justify-center text-xs cursor-pointer transition-colors ${
                 bookedDays.includes(day)
-                  ? 'bg-yellow-500/30 text-yellow-400'
+                  ? 'bg-red-500/30 text-red-400'
                   : 'hover:bg-white/10 text-gray-400'
               }`}
             >
@@ -191,8 +191,8 @@ function ReservationsMockup() {
       
       <div className="bg-white/5 rounded-xl p-3">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-yellow-500/20 flex items-center justify-center">
-            <Calendar className="w-5 h-5 text-yellow-400" />
+          <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center">
+            <Calendar className="w-5 h-5 text-red-400" />
           </div>
           <div className="flex-1">
             <div className="text-sm text-white">Następna rezerwacja</div>
@@ -218,7 +218,7 @@ function GalleryMockup() {
             className="aspect-square rounded-lg overflow-hidden cursor-pointer relative group"
           >
             <div className={`absolute inset-0 bg-gradient-to-br ${
-              ['from-yellow-500 to-orange-600',
+              ['from-red-500 to-red-600',
                'from-blue-500 to-cyan-500',
                'from-purple-500 to-pink-500',
                'from-green-500 to-emerald-500',
@@ -236,7 +236,7 @@ function GalleryMockup() {
           <div
             key={tab}
             className={`px-3 py-1 rounded-full text-[10px] ${
-              i === 0 ? 'bg-yellow-500/20 text-yellow-400' : 'bg-white/5 text-gray-500'
+              i === 0 ? 'bg-red-500/20 text-red-400' : 'bg-white/5 text-gray-500'
             }`}
           >
             {tab}
@@ -296,7 +296,7 @@ function UserPanelMockup() {
     <div className="space-y-4">
       {/* Profile header */}
       <div className="flex items-center gap-3 bg-white/5 rounded-xl p-3">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center text-lg font-bold text-black">
+        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-lg font-bold text-white">
           JK
         </div>
         <div className="flex-1">
@@ -322,7 +322,7 @@ function UserPanelMockup() {
             transition={{ delay: 0.2 + i * 0.05 }}
             className="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 cursor-pointer group transition-colors"
           >
-            <item.icon className="w-4 h-4 text-gray-500 group-hover:text-yellow-400 transition-colors" />
+            <item.icon className="w-4 h-4 text-gray-500 group-hover:text-red-400 transition-colors" />
             <span className="text-xs text-gray-400 flex-1">{item.label}</span>
             <ChevronRight className="w-3 h-3 text-gray-600" />
           </motion.div>
@@ -346,10 +346,10 @@ function NotificationsMockup() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: i * 0.1 }}
           className={`flex items-start gap-3 p-3 rounded-xl transition-colors cursor-pointer ${
-            notif.unread ? 'bg-yellow-500/10' : 'bg-white/5'
+            notif.unread ? 'bg-red-500/10' : 'bg-white/5'
           }`}
         >
-          <div className={`w-2 h-2 rounded-full mt-1.5 ${notif.unread ? 'bg-yellow-400' : 'bg-gray-600'}`} />
+          <div className={`w-2 h-2 rounded-full mt-1.5 ${notif.unread ? 'bg-red-400' : 'bg-gray-600'}`} />
           <div className="flex-1 min-w-0">
             <div className="text-xs font-medium text-white">{notif.title}</div>
             <div className="text-[10px] text-gray-500 truncate">{notif.desc}</div>
@@ -379,7 +379,7 @@ function ChatMockup() {
           >
             <div className={`max-w-[80%] px-3 py-2 rounded-2xl text-[11px] ${
               msg.own
-                ? 'bg-yellow-500 text-black rounded-br-sm'
+                ? 'bg-red-500 text-white rounded-br-sm'
                 : 'bg-white/10 text-gray-300 rounded-bl-sm'
             }`}>
               {msg.text}
@@ -392,7 +392,7 @@ function ChatMockup() {
         <div className="flex-1 bg-white/5 rounded-full px-4 py-2 text-[11px] text-gray-500">
           Napisz wiadomość...
         </div>
-        <div className="w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center">
+        <div className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center">
           <ChevronRight className="w-4 h-4 text-black" />
         </div>
       </div>
@@ -418,7 +418,7 @@ function SettingsMockup() {
         >
           <span className="text-xs text-gray-400">{setting.label}</span>
           <div className={`w-8 h-5 rounded-full p-0.5 transition-colors ${
-            setting.enabled ? 'bg-yellow-500' : 'bg-gray-700'
+            setting.enabled ? 'bg-red-500' : 'bg-gray-700'
           }`}>
             <motion.div
               className="w-4 h-4 rounded-full bg-white shadow-sm"
@@ -447,8 +447,8 @@ export default function ClientFeaturesSection() {
     <section id="funkcjonalnosci" className="py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-yellow-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-orange-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#00ff41]/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -499,12 +499,12 @@ export default function ClientFeaturesSection() {
                   transition={{ delay: 0.1 + index * 0.05 }}
                   className={`w-full flex items-center gap-4 p-4 rounded-xl text-left transition-all ${
                     isActive
-                      ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/10 border border-yellow-500/30'
+                      ? 'bg-gradient-to-r from-red-500/20 to-red-600/10 border border-red-500/30'
                       : 'bg-white/5 border border-transparent hover:bg-white/10 hover:border-white/10'
                   }`}
                 >
                   <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${
-                    isActive ? 'bg-yellow-500 text-black' : 'bg-white/10 text-gray-400'
+                    isActive ? 'bg-red-500 text-white' : 'bg-white/10 text-gray-400'
                   }`}>
                     <Icon className="w-5 h-5" />
                   </div>
@@ -515,7 +515,7 @@ export default function ClientFeaturesSection() {
                     <div className="text-xs text-gray-500 truncate">{feature.shortDesc}</div>
                   </div>
                   <ChevronRight className={`w-4 h-4 transition-all ${
-                    isActive ? 'text-yellow-400 translate-x-1' : 'text-gray-600'
+                    isActive ? 'text-red-400 translate-x-1' : 'text-gray-600'
                   }`} />
                 </motion.button>
               );
@@ -540,7 +540,7 @@ export default function ClientFeaturesSection() {
               >
                 {/* Header */}
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
                     <activeFeature.icon className="w-7 h-7 text-black" />
                   </div>
                   <div className="flex-1">
@@ -559,7 +559,7 @@ export default function ClientFeaturesSection() {
                       transition={{ delay: i * 0.05 }}
                       className="flex items-center gap-2 text-sm text-gray-300"
                     >
-                      <Check className="w-4 h-4 text-yellow-400 flex-shrink-0" />
+                      <Check className="w-4 h-4 text-[#00ff41] flex-shrink-0" />
                       <span>{benefit}</span>
                     </motion.div>
                   ))}
@@ -571,7 +571,7 @@ export default function ClientFeaturesSection() {
                   <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/5">
                     <div className="flex gap-1.5">
                       <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                       <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                     </div>
                     <div className="flex-1 text-center">
@@ -597,7 +597,7 @@ export default function ClientFeaturesSection() {
           </p>
           <motion.a
             href="#kontakt"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl font-semibold text-black"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 rounded-xl font-semibold text-white"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
