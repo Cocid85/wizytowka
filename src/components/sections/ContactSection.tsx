@@ -8,14 +8,13 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import toast from 'react-hot-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
-const contactSchema = z.object({
-  name: z.string().min(2, 'Imię musi mieć co najmniej 2 znaki'),
-  email: z.string().email('Nieprawidłowy adres email'),
-  message: z.string().min(10, 'Wiadomość musi mieć co najmniej 10 znaków'),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
+type ContactFormData = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 // Komponent formularza - renderowany w każdej ćwiartce
 function FormContent({ 
@@ -24,12 +23,14 @@ function FormContent({
   isSubmitting, 
   foldState,
   onSubmit,
+  t,
 }: {
   register: ReturnType<typeof useForm<ContactFormData>>['register'];
   errors: ReturnType<typeof useForm<ContactFormData>>['formState']['errors'];
   isSubmitting: boolean;
   foldState: string;
   onSubmit: (e: React.FormEvent) => void;
+  t: (key: string) => string;
 }) {
   return (
     <form
@@ -39,7 +40,7 @@ function FormContent({
     >
       <div>
         <label htmlFor="name" className="block text-sm font-semibold text-white mb-2">
-          Imię i nazwisko
+          {t('contact.form.name')}
         </label>
         <input
           {...register('name')}
@@ -47,7 +48,7 @@ function FormContent({
           id="name"
           disabled={foldState !== 'idle'}
           className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors disabled:opacity-50"
-          placeholder="Jan Kowalski"
+          placeholder={t('contact.form.namePlaceholder')}
           suppressHydrationWarning
         />
         {errors.name && (
@@ -55,17 +56,17 @@ function FormContent({
         )}
       </div>
 
-      <div>
-        <label htmlFor="email" className="block text-sm font-semibold text-white mb-2">
-          Email
-        </label>
-        <input
-          {...register('email')}
-          type="email"
-          id="email"
-          disabled={foldState !== 'idle'}
-          className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors disabled:opacity-50"
-          placeholder="jan@example.com"
+        <div>
+          <label htmlFor="email" className="block text-sm font-semibold text-white mb-2">
+            {t('contact.form.email')}
+          </label>
+          <input
+            {...register('email')}
+            type="email"
+            id="email"
+            disabled={foldState !== 'idle'}
+            className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors disabled:opacity-50"
+            placeholder={t('contact.form.emailPlaceholder')}
           suppressHydrationWarning
         />
         {errors.email && (
@@ -75,7 +76,7 @@ function FormContent({
 
       <div>
         <label htmlFor="message" className="block text-sm font-semibold text-white mb-2">
-          Wiadomość
+          {t('contact.form.message')}
         </label>
         <textarea
           {...register('message')}
@@ -83,7 +84,7 @@ function FormContent({
           rows={5}
           disabled={foldState !== 'idle'}
           className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors resize-none disabled:opacity-50"
-          placeholder="Opisz swój projekt..."
+          placeholder={t('contact.form.messagePlaceholder')}
           suppressHydrationWarning
         />
         {errors.message && (
@@ -101,12 +102,12 @@ function FormContent({
         {isSubmitting ? (
           <>
             <Loader2 className="w-5 h-5 animate-spin" />
-            Wysyłanie...
+            {t('contact.form.sending')}
           </>
         ) : (
           <>
             <Send className="w-5 h-5" />
-            Wyślij wiadomość
+            {t('contact.form.submit')}
           </>
         )}
       </motion.button>
@@ -115,6 +116,7 @@ function FormContent({
 }
 
 export default function ContactSection() {
+  const { t } = useLanguage();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -126,6 +128,13 @@ export default function ContactSection() {
   const [formHeight, setFormHeight] = useState(520);
   const formContainerRef = useRef<HTMLDivElement>(null);
   const [copiedField, setCopiedField] = useState<string | null>(null);
+
+  // Dynamiczny schema z tłumaczeniami
+  const contactSchema = z.object({
+    name: z.string().min(2, t('contact.form.nameError')),
+    email: z.string().email(t('contact.form.emailError')),
+    message: z.string().min(10, t('contact.form.messageError')),
+  });
 
   const copyToClipboard = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
@@ -259,10 +268,10 @@ export default function ContactSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Kontakt</span>
+            <span className="text-gradient">{t('contact.title')}</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-4">
-            Masz projekt? Porozmawiajmy o tym, jak mogę pomóc
+            {t('contact.subtitle')}
           </p>
           <motion.p
             className="text-lg text-white max-w-2xl mx-auto"
@@ -270,8 +279,7 @@ export default function ContactSection() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            Nazywam się <span className="font-bold text-red-400">Michał Szymanowski</span> i{' '}
-            <span className="text-[#00ff41] font-semibold">stworzę dla Ciebie coś wyjątkowego</span>.
+            {t('contact.nameIntro')} <span className="font-bold text-red-400">{t('contact.name')}</span> {t('contact.promise')}
           </motion.p>
         </motion.div>
 
@@ -298,7 +306,7 @@ export default function ContactSection() {
                 </div>
 
                 <h3 className="text-2xl font-bold text-white mb-8 relative">
-                  Dane kontaktowe
+                  {t('contact.contactInfo')}
                   <motion.div 
                     className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-red-500 to-[#00ff41] rounded-full"
                     initial={{ width: 0 }}
@@ -325,7 +333,7 @@ export default function ContactSection() {
                         <Mail className="w-6 h-6 text-white" />
                       </motion.div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-gray-400 mb-1">Email</p>
+                        <p className="text-sm text-gray-400 mb-1">{t('contact.email')}</p>
                         <p className="text-white font-medium truncate group-hover/item:text-red-400 transition-colors">
                           ms.akademiaair@gmail.com
                         </p>
@@ -361,7 +369,7 @@ export default function ContactSection() {
                         <Phone className="w-6 h-6 text-black" />
                       </motion.div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-gray-400 mb-1">Telefon</p>
+                        <p className="text-sm text-gray-400 mb-1">{t('contact.phone')}</p>
                         <p className="text-white font-medium group-hover/item:text-[#00ff41] transition-colors">
                           +48 691 409 400
                         </p>
@@ -395,15 +403,15 @@ export default function ContactSection() {
                         <Clock className="w-6 h-6 text-white" />
                       </motion.div>
                       <div className="flex-1">
-                        <p className="text-sm text-gray-400 mb-1">Czas odpowiedzi</p>
-                        <p className="text-white font-medium">Do 24 godzin</p>
+                        <p className="text-sm text-gray-400 mb-1">{t('contact.responseTime')}</p>
+                        <p className="text-white font-medium">{t('contact.responseTimeValue')}</p>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="relative flex h-3 w-3">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                           <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                         </span>
-                        <span className="text-xs text-green-400">Online</span>
+                        <span className="text-xs text-green-400">{t('contact.online')}</span>
                       </div>
                     </div>
                   </motion.div>
@@ -423,10 +431,9 @@ export default function ContactSection() {
                   <MessageSquare className="w-5 h-5 text-red-400" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-2">Preferuję email</h4>
+                  <h4 className="text-lg font-semibold text-white mb-2">{t('contact.preferEmail')}</h4>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                    Najszybciej odpowiadam na wiadomości email. Telefon rezerwuję dla pilnych spraw.
-                    Opisz swój projekt w formularzu, a odezwę się z propozycją.
+                    {t('contact.preferEmailDesc')}
                   </p>
                 </div>
               </div>
@@ -450,12 +457,12 @@ export default function ContactSection() {
                 ))}
               </div>
               <div className="flex-1">
-                <p className="text-sm text-white font-medium">Zaufali mi klienci</p>
-                <p className="text-xs text-gray-400">Dołącz do grona zadowolonych</p>
+                <p className="text-sm text-white font-medium">{t('contact.trusted')}</p>
+                <p className="text-xs text-gray-400">{t('contact.join')}</p>
               </div>
               <div className="text-right">
                 <p className="text-2xl font-bold text-[#00ff41]">100%</p>
-                <p className="text-xs text-gray-400">satysfakcji</p>
+                <p className="text-xs text-gray-400">{t('contact.satisfaction')}</p>
               </div>
             </motion.div>
           </motion.div>
@@ -490,6 +497,7 @@ export default function ContactSection() {
                     isSubmitting={isSubmitting}
                     foldState={foldState}
                     onSubmit={handleFormSubmit}
+                    t={t}
                   />
                 </motion.div>
               )}
@@ -560,6 +568,7 @@ export default function ContactSection() {
                           isSubmitting={isSubmitting}
                           foldState={foldState}
                           onSubmit={handleFormSubmit}
+                          t={t}
                         />
                       </div>
                       
@@ -652,7 +661,7 @@ export default function ContactSection() {
                     className="text-3xl md:text-4xl font-bold mb-3"
                   >
                     <span className="bg-gradient-to-r from-white via-red-500 to-[#00ff41] bg-clip-text text-transparent">
-                      Wiadomość wysłana!
+                      {t('contact.form.success')}
                     </span>
                   </motion.h3>
 
@@ -662,16 +671,7 @@ export default function ContactSection() {
                     transition={{ delay: 0.5 }}
                     className="text-lg text-gray-300 mb-2"
                   >
-                    Dziękuję za wiadomość
-                  </motion.p>
-
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
-                    className="text-gray-400"
-                  >
-                    Odezwę się wkrótce!
+                    {t('contact.form.successMessage')}
                   </motion.p>
 
                   {/* Particles */}

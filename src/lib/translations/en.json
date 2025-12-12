@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "process": "Process",
+    "features": "Features",
+    "contact": "Contact"
+  },
+  "hero": {
+    "status": "Available for new projects",
+    "title1": "I create",
+    "title2": "applications",
+    "title3": "that",
+    "title4": "work",
+    "description": "I transform ideas into modern mobile and web applications. From concept to deployment.",
+    "nameIntro": "My name is",
+    "name": "Michał Szymanowski",
+    "promise": "and I'll create something exceptional for you",
+    "cta1": "Start project",
+    "cta2": "View portfolio",
+    "stats": {
+      "experience": "Years of experience",
+      "satisfaction": "Satisfaction"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Have a project? Let's talk about how I can help",
+    "nameIntro": "My name is",
+    "name": "Michał Szymanowski",
+    "promise": "and I'll create something exceptional for you",
+    "contactInfo": "Contact information",
+    "email": "Email",
+    "phone": "Phone",
+    "responseTime": "Response time",
+    "responseTimeValue": "Within 24 hours",
+    "online": "Online",
+    "preferEmail": "I prefer email",
+    "preferEmailDesc": "I respond fastest to email messages. I reserve the phone for urgent matters. Describe your project in the form, and I'll get back to you with a proposal.",
+    "trusted": "Clients who trusted me",
+    "join": "Join satisfied customers",
+    "satisfaction": "satisfaction",
+    "form": {
+      "name": "Full name",
+      "namePlaceholder": "John Doe",
+      "email": "Email",
+      "emailPlaceholder": "john@example.com",
+      "message": "Message",
+      "messagePlaceholder": "Describe your project, needs, expectations...",
+      "submit": "Send message",
+      "sending": "Sending...",
+      "success": "Message sent!",
+      "successMessage": "Thank you for your message. I'll get back to you within 24 hours.",
+      "nameError": "Name must be at least 2 characters",
+      "emailError": "Invalid email address",
+      "messageError": "Message must be at least 10 characters"
+    }
+  }
+}
+

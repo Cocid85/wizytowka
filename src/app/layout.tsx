@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import { Toaster } from "react-hot-toast";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -31,9 +32,10 @@ export default function RootLayout({
   return (
     <html lang="pl" className="dark">
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        <SmoothScroll />
-        {children}
-        <Toaster
+        <LanguageProvider>
+          <SmoothScroll />
+          {children}
+          <Toaster
           position="top-right"
           containerClassName="toaster-container"
           containerStyle={{
@@ -69,6 +71,7 @@ export default function RootLayout({
             },
           }}
         />
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Strona główna",
+    "services": "Usługi",
+    "portfolio": "Portfolio",
+    "process": "Proces",
+    "features": "Funkcjonalności",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "status": "Dostępny do nowych projektów",
+    "title1": "Tworzę",
+    "title2": "aplikacje",
+    "title3": "które",
+    "title4": "działają",
+    "description": "Przekształcam pomysły w nowoczesne aplikacje mobilne i webowe. Od koncepcji po wdrożenie.",
+    "nameIntro": "Nazywam się",
+    "name": "Michał Szymanowski",
+    "promise": "i stworzę dla Ciebie coś wyjątkowego",
+    "cta1": "Rozpocznij projekt",
+    "cta2": "Zobacz realizacje",
+    "stats": {
+      "experience": "Lat doświadczenia",
+      "satisfaction": "Satysfakcji"
+    }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Masz projekt? Porozmawiajmy o tym, jak mogę pomóc",
+    "nameIntro": "Nazywam się",
+    "name": "Michał Szymanowski",
+    "promise": "i stworzę dla Ciebie coś wyjątkowego",
+    "contactInfo": "Dane kontaktowe",
+    "email": "Email",
+    "phone": "Telefon",
+    "responseTime": "Czas odpowiedzi",
+    "responseTimeValue": "Do 24 godzin",
+    "online": "Online",
+    "preferEmail": "Preferuję email",
+    "preferEmailDesc": "Najszybciej odpowiadam na wiadomości email. Telefon rezerwuję dla pilnych spraw. Opisz swój projekt w formularzu, a odezwę się z propozycją.",
+    "trusted": "Zaufali mi klienci",
+    "join": "Dołącz do grona zadowolonych",
+    "satisfaction": "satysfakcji",
+    "form": {
+      "name": "Imię i nazwisko",
+      "namePlaceholder": "Jan Kowalski",
+      "email": "Email",
+      "emailPlaceholder": "jan@example.com",
+      "message": "Wiadomość",
+      "messagePlaceholder": "Opisz swój projekt, potrzeby, oczekiwania...",
+      "submit": "Wyślij wiadomość",
+      "sending": "Wysyłanie...",
+      "success": "Wiadomość wysłana!",
+      "successMessage": "Dziękuję za wiadomość. Odezwę się w ciągu 24 godzin.",
+      "nameError": "Imię musi mieć co najmniej 2 znaki",
+      "emailError": "Nieprawidłowy adres email",
+      "messageError": "Wiadomość musi mieć co najmniej 10 znaków"
+    }
+  }
+}
+

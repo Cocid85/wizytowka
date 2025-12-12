@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { ArrowDown, Sparkles, ExternalLink } from 'lucide-react';
 import { ProjectWizardModal } from '@/components/ProjectWizard';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Tech stack badges
 const techStack = [
@@ -25,6 +26,7 @@ const codeSnippet = `const developer = {
 };`;
 
 export default function HeroSection() {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);
   const [glitchActive, setGlitchActive] = useState(false);
@@ -147,7 +149,7 @@ export default function HeroSection() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
               </span>
-              <span className="text-sm text-gray-300">Dostępny do nowych projektów</span>
+              <span className="text-sm text-gray-300">{t('hero.status')}</span>
             </motion.div>
 
             {/* Main heading with glitch effect */}
@@ -158,10 +160,10 @@ export default function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <span className="block text-white">Tworzę</span>
+                <span className="block text-white">{t('hero.title1')}</span>
                 <span className="relative inline-block">
                   <span className="text-gradient bg-gradient-to-r from-white via-red-500 to-[#00ff41] bg-clip-text text-transparent">
-                    aplikacje
+                    {t('hero.title2')}
                   </span>
                   {/* Glitch layers */}
                   {glitchActive && (
@@ -170,19 +172,19 @@ export default function HeroSection() {
                         className="absolute inset-0 text-gradient bg-gradient-to-r from-[#00ff41] to-green-500 bg-clip-text text-transparent"
                         style={{ transform: 'translate(-2px, -2px)', opacity: 0.8 }}
                       >
-                        aplikacje
+                        {t('hero.title2')}
                       </span>
                       <span 
                         className="absolute inset-0 text-gradient bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent"
                         style={{ transform: 'translate(2px, 2px)', opacity: 0.8 }}
                       >
-                        aplikacje
+                        {t('hero.title2')}
                       </span>
                     </>
                   )}
                 </span>
                 <span className="block text-white">
-                  które <span className="text-[#00ff41]">działają</span>
+                  {t('hero.title3')} <span className="text-[#00ff41]">{t('hero.title4')}</span>
                 </span>
               </motion.h1>
             </div>
@@ -194,8 +196,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
             >
-              Przekształcam pomysły w <span className="text-white font-medium">nowoczesne aplikacje</span> mobilne 
-              i webowe. Od koncepcji po wdrożenie.
+              {t('hero.description')}
             </motion.p>
 
             {/* Personal introduction */}
@@ -206,8 +207,7 @@ export default function HeroSection() {
               transition={{ delay: 0.6, duration: 0.6 }}
             >
               <p className="text-lg text-white leading-relaxed">
-                Nazywam się <span className="font-bold text-red-400">Michał Szymanowski</span> i{' '}
-                <span className="text-[#00ff41] font-semibold">stworzę dla Ciebie coś wyjątkowego</span>.
+                {t('hero.nameIntro')} <span className="font-bold text-red-400">{t('hero.name')}</span> {t('hero.promise')}
               </p>
             </motion.div>
 
@@ -225,7 +225,7 @@ export default function HeroSection() {
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
-                  Rozpocznij projekt
+                  {t('hero.cta1')}
                   <ArrowDown className="w-4 h-4 rotate-[-90deg] group-hover:translate-x-1 transition-transform" />
                 </span>
                 <motion.div
@@ -242,7 +242,7 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Zobacz realizacje
+                {t('hero.cta2')}
               </motion.a>
             </motion.div>
 
@@ -254,12 +254,12 @@ export default function HeroSection() {
               transition={{ delay: 1, duration: 0.6 }}
             >
               {[
-                { value: '5+', label: 'Lat doświadczenia' },
-                { value: '100%', label: 'Satysfakcji' },
+                { value: '5+', key: 'experience' },
+                { value: '100%', key: 'satisfaction' },
               ].map((stat, i) => (
                 <div key={i} className="text-center sm:text-left">
                   <div className="text-2xl font-bold text-white">{stat.value}</div>
-                  <div className="text-sm text-gray-500">{stat.label}</div>
+                  <div className="text-sm text-gray-500">{t(`hero.stats.${stat.key}`)}</div>
                 </div>
               ))}
             </motion.div>

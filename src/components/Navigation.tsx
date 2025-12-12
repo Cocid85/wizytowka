@@ -1,21 +1,24 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const navItems = [
-  { label: 'Usługi', href: '#uslugi' },
-  { label: 'Funkcjonalności', href: '#funkcjonalnosci' },
-  { label: 'Tech Stack', href: '#tech-stack' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Proces', href: '#proces' },
+  { key: 'services', href: '#uslugi' },
+  { key: 'features', href: '#funkcjonalnosci' },
+  { key: 'techStack', href: '#tech-stack' },
+  { key: 'portfolio', href: '#portfolio' },
+  { key: 'process', href: '#proces' },
 ];
 
 export default function Navigation() {
+  const { language, setLanguage, t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -108,7 +111,7 @@ export default function Navigation() {
                       : 'text-gray-400 hover:text-white'
                   }`}
                 >
-                  {item.label}
+                  {t(`nav.${item.key}`)}
                   
                   {/* Active indicator */}
                   {activeSection === item.href && (
@@ -127,6 +130,49 @@ export default function Navigation() {
               ))}
             </div>
 
+            {/* Language Switcher - Desktop */}
+            <div className="hidden md:flex items-center gap-2">
+              <div className="relative">
+                <motion.button
+                  onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Globe className="w-4 h-4" />
+                  <span className="text-sm font-medium uppercase">{language}</span>
+                </motion.button>
+                
+                <AnimatePresence>
+                  {isLangMenuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="absolute top-full right-0 mt-2 bg-gray-900/95 backdrop-blur-xl border border-white/10 rounded-lg overflow-hidden shadow-xl"
+                    >
+                      {(['pl', 'en'] as const).map((lang) => (
+                        <button
+                          key={lang}
+                          onClick={() => {
+                            setLanguage(lang);
+                            setIsLangMenuOpen(false);
+                          }}
+                          className={`w-full px-4 py-2 text-left text-sm transition-colors ${
+                            language === lang
+                              ? 'bg-red-500/20 text-white'
+                              : 'text-gray-400 hover:text-white hover:bg-white/5'
+                          }`}
+                        >
+                          {lang === 'pl' ? 'Polski' : 'English'}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+
             {/* CTA Button - Desktop */}
             <motion.a
               href="#kontakt"
@@ -137,7 +183,7 @@ export default function Navigation() {
               whileTap={{ scale: 0.95 }}
               className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-red-500 to-red-600 rounded-lg font-semibold text-sm text-white shadow-lg shadow-red-500/20 hover:shadow-red-500/30 transition-shadow"
             >
-              Kontakt
+              {t('nav.contact')}
               <ArrowUpRight className="w-4 h-4" />
             </motion.a>
 
@@ -242,11 +288,35 @@ export default function Navigation() {
                             ? 'bg-red-500' 
                             : 'bg-gray-600'
                         }`} />
-                        <span className="font-medium">{item.label}</span>
+                        <span className="font-medium">{t(`nav.${item.key}`)}</span>
                       </motion.a>
                     ))}
                   </div>
                 </nav>
+
+                {/* Language Switcher - Mobile */}
+                <div className="px-4 py-4 border-t border-white/10">
+                  <div className="flex items-center gap-2">
+                    <Globe className="w-4 h-4 text-gray-400" />
+                    <div className="flex gap-2 flex-1">
+                      {(['pl', 'en'] as const).map((lang) => (
+                        <button
+                          key={lang}
+                          onClick={() => {
+                            setLanguage(lang);
+                          }}
+                          className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                            language === lang
+                              ? 'bg-red-500/20 text-white border border-red-500/30'
+                              : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'
+                          }`}
+                        >
+                          {lang === 'pl' ? 'Polski' : 'English'}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
 
                 {/* Bottom CTA */}
                 <div className="p-6 border-t border-white/10">
@@ -258,7 +328,7 @@ export default function Navigation() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl font-semibold text-white"
                   >
-                    Skontaktuj się
+                    {t('nav.contact')}
                     <ArrowUpRight className="w-5 h-5" />
                   </motion.a>
                   
