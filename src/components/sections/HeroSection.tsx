@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { ArrowDown, Sparkles, ExternalLink } from 'lucide-react';
+import { ProjectWizardModal } from '@/components/ProjectWizard';
 
 // Tech stack badges
 const techStack = [
@@ -27,6 +28,7 @@ export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);
   const [glitchActive, setGlitchActive] = useState(false);
+  const [isWizardOpen, setIsWizardOpen] = useState(false);
 
   // Mouse position for parallax
   const mouseX = useMotionValue(0);
@@ -216,8 +218,8 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6 }}
             >
-              <motion.a
-                href="#kontakt"
+              <motion.button
+                onClick={() => setIsWizardOpen(true)}
                 className="group relative px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl font-semibold text-white text-center overflow-hidden"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -232,7 +234,7 @@ export default function HeroSection() {
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
                 />
-              </motion.a>
+              </motion.button>
               
               <motion.a
                 href="#portfolio"
@@ -470,6 +472,12 @@ export default function HeroSection() {
           80% { transform: translate(2px, 2px); }
         }
       `}</style>
+
+      {/* Project Wizard Modal */}
+      <ProjectWizardModal 
+        isOpen={isWizardOpen} 
+        onClose={() => setIsWizardOpen(false)} 
+      />
     </section>
   );
 }
