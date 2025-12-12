@@ -187,7 +187,7 @@ export default function HeroSection() {
 
             {/* Description */}
             <motion.p
-              className="text-xl text-gray-400 mb-8 leading-relaxed max-w-lg"
+              className="text-xl text-gray-400 mb-6 leading-relaxed max-w-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
@@ -195,6 +195,19 @@ export default function HeroSection() {
               Przekształcam pomysły w <span className="text-white font-medium">nowoczesne aplikacje</span> mobilne 
               i webowe. Od koncepcji po wdrożenie.
             </motion.p>
+
+            {/* Personal introduction */}
+            <motion.div
+              className="mb-8 p-4 rounded-xl bg-gradient-to-r from-red-500/10 via-white/5 to-[#00ff41]/10 border border-white/10 backdrop-blur-sm"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+            >
+              <p className="text-lg text-white leading-relaxed">
+                Mam na imię <span className="font-bold text-red-400">Michał Szymanowski</span> i{' '}
+                <span className="text-[#00ff41] font-semibold">stworzę dla Ciebie coś wyjątkowego</span>.
+              </p>
+            </motion.div>
 
             {/* CTA Buttons */}
             <motion.div

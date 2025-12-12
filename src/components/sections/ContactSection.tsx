@@ -261,9 +261,18 @@ export default function ContactSection() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-gradient">Kontakt</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-4">
             Masz projekt? Porozmawiajmy o tym, jak mogę pomóc
           </p>
+          <motion.p
+            className="text-lg text-white max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            Mam na imię <span className="font-bold text-red-400">Michał Szymanowski</span> i{' '}
+            <span className="text-[#00ff41] font-semibold">stworzę dla Ciebie coś wyjątkowego</span>.
+          </motion.p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
