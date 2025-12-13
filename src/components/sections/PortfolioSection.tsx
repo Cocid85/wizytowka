@@ -5,6 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { ExternalLink, Smartphone, Globe, ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
 import Image from 'next/image';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Project {
   id: string;
@@ -316,7 +317,7 @@ function HybridMockup({ project, isHovered }: { project: Project; isHovered: boo
           animate={{ scale: isHovered ? 1 : 0.8 }}
           className="flex items-center gap-2 px-6 py-3 bg-white rounded-full text-black font-medium"
         >
-          <span>Otwórz aplikację</span>
+          <span>{t('portfolio.visitSite')}</span>
           <ArrowUpRight className="w-4 h-4" />
         </motion.div>
       </motion.div>
@@ -332,7 +333,7 @@ function HybridMockup({ project, isHovered }: { project: Project; isHovered: boo
 }
 
 // Karta projektu
-function ProjectCard({ project, index, inView }: { project: Project; index: number; inView: boolean }) {
+function ProjectCard({ project, index, inView, t }: { project: Project; index: number; inView: boolean; t: (key: string) => string }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleClick = () => {
@@ -377,12 +378,17 @@ function ProjectCard({ project, index, inView }: { project: Project; index: numb
             {project.type === 'mobile' ? (
               <>
                 <Smartphone className="w-3 h-3" />
-                Aplikacja mobilna
+                {t('portfolio.types.mobile')}
+              </>
+            ) : project.type === 'hybrid' ? (
+              <>
+                <Smartphone className="w-3 h-3" />
+                {t('portfolio.types.hybrid')}
               </>
             ) : (
               <>
                 <Globe className="w-3 h-3" />
-                Strona WWW
+                {t('portfolio.types.web')}
               </>
             )}
           </motion.div>
@@ -456,7 +462,7 @@ function ProjectCard({ project, index, inView }: { project: Project; index: numb
                   index % 2 === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
               >
-                Odwiedź stronę
+                {t('portfolio.visitSite')}
                 <ExternalLink className="w-4 h-4" />
               </span>
             </motion.div>
@@ -468,6 +474,7 @@ function ProjectCard({ project, index, inView }: { project: Project; index: numb
 }
 
 export default function PortfolioSection() {
+  const { t } = useLanguage();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -496,14 +503,14 @@ export default function PortfolioSection() {
             transition={{ delay: 0.1 }}
             className="inline-block px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-gray-400 mb-6"
           >
-            🚀 Realizacje
+            {t('portfolio.badge')}
           </motion.span>
 
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Portfolio</span>
+            <span className="text-gradient">{t('portfolio.title')}</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Wybrane projekty, które zrealizowałem dla klientów
+            {t('portfolio.subtitle')}
           </p>
         </motion.div>
 
@@ -515,9 +522,10 @@ export default function PortfolioSection() {
               project={project}
               index={index}
               inView={inView}
+              t={t}
             />
-          ))}
-        </div>
+                  ))}
+                </div>
 
         {/* Bottom CTA */}
         <motion.div
@@ -527,7 +535,7 @@ export default function PortfolioSection() {
           className="mt-24 text-center"
         >
           <p className="text-gray-500 mb-6">
-            Masz pomysł na projekt? Porozmawiajmy o realizacji.
+            {t('portfolio.cta.text')}
           </p>
           <motion.a
             href="#kontakt"
@@ -535,10 +543,10 @@ export default function PortfolioSection() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            Rozpocznij projekt
+            {t('portfolio.cta.button')}
             <ArrowUpRight className="w-5 h-5" />
           </motion.a>
-        </motion.div>
+              </motion.div>
       </div>
     </section>
   );

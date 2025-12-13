@@ -15,6 +15,7 @@ import {
   Check
 } from 'lucide-react';
 import { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Feature {
   id: string;
@@ -26,94 +27,30 @@ interface Feature {
   mockup: React.ReactNode;
 }
 
-const features: Feature[] = [
-  {
-    id: 'dashboard',
-    icon: BarChart3,
-    title: 'Dashboard',
-    shortDesc: 'Analityka w czasie rzeczywistym',
-    description: 'Kompleksowy panel z wykresami, statystykami i raportami. Monitoruj kluczowe wskaźniki i podejmuj decyzje oparte na danych.',
-    benefits: ['Wykresy w czasie rzeczywistym', 'Eksport raportów PDF/CSV', 'Customowe widoki', 'Alerty i powiadomienia'],
-    mockup: <DashboardMockup />
-  },
-  {
-    id: 'reservations',
-    icon: Calendar,
-    title: 'Rezerwacje',
-    shortDesc: 'Intuicyjny system bookingu',
-    description: 'System rezerwacji z kalendarzem, automatycznymi przypomnieniami i zarządzaniem dostępnością. Idealne dla usług.',
-    benefits: ['Kalendarz interaktywny', 'Przypomnienia SMS/Email', 'Zarządzanie dostępnością', 'Integracja z Google Calendar'],
-    mockup: <ReservationsMockup />
-  },
-  {
-    id: 'gallery',
-    icon: ImageIcon,
-    title: 'Galeria',
-    shortDesc: 'Zarządzanie mediami',
-    description: 'Elegancka galeria z albumami, lightboxem i lazy loadingiem. Prezentuj swoje prace w najlepszym świetle.',
-    benefits: ['Albumy i kategorie', 'Lightbox z gesturami', 'Optymalizacja obrazów', 'Drag & drop upload'],
-    mockup: <GalleryMockup />
-  },
-  {
-    id: 'payments',
-    icon: CreditCard,
-    title: 'Płatności',
-    shortDesc: 'Bezpieczne transakcje',
-    description: 'Zintegrowany system płatności z obsługą kart, przelewów i automatycznym generowaniem faktur.',
-    benefits: ['Stripe / PayU / Przelewy24', 'Automatyczne faktury', 'Historia transakcji', 'Subskrypcje i plany'],
-    mockup: <PaymentsMockup />
-  },
-  {
-    id: 'users',
-    icon: User,
-    title: 'Panel Użytkownika',
-    shortDesc: 'Zarządzanie kontem',
-    description: 'Kompletny panel klienta z profilem, historią zamówień i personalizacją ustawień.',
-    benefits: ['Profil użytkownika', 'Historia aktywności', 'Ustawienia prywatności', 'Dwuskładnikowe 2FA'],
-    mockup: <UserPanelMockup />
-  },
-  {
-    id: 'notifications',
-    icon: Bell,
-    title: 'Powiadomienia',
-    shortDesc: 'System alertów',
-    description: 'Wielokanałowy system powiadomień - push, email, SMS. Użytkownicy zawsze na bieżąco.',
-    benefits: ['Push notifications', 'Email marketing', 'SMS gateway', 'Centrum powiadomień'],
-    mockup: <NotificationsMockup />
-  },
-  {
-    id: 'chat',
-    icon: MessageSquare,
-    title: 'Czat',
-    shortDesc: 'Komunikacja real-time',
-    description: 'Wbudowany czat z obsługą klienta, historia konwersacji i status online.',
-    benefits: ['Czat na żywo', 'Historia wiadomości', 'Wysyłanie załączników', 'Chatbot AI'],
-    mockup: <ChatMockup />
-  },
-  {
-    id: 'settings',
-    icon: Settings,
-    title: 'Konfiguracja',
-    shortDesc: 'Pełna kontrola',
-    description: 'Panel administracyjny z zaawansowanymi ustawieniami, rolami użytkowników i konfiguracją systemu.',
-    benefits: ['Role i uprawnienia', 'Konfiguracja systemu', 'Logi aktywności', 'Backup danych'],
-    mockup: <SettingsMockup />
-  },
+const features = [
+  { id: 'dashboard', icon: BarChart3 },
+  { id: 'reservations', icon: Calendar },
+  { id: 'gallery', icon: ImageIcon },
+  { id: 'payments', icon: CreditCard },
+  { id: 'users', icon: User },
+  { id: 'notifications', icon: Bell },
+  { id: 'chat', icon: MessageSquare },
+  { id: 'settings', icon: Settings },
 ];
 
 // ============================================
 // MOCKUPY KOMPONENTÓW
 // ============================================
 
-function DashboardMockup() {
+function DashboardMockup({ t }: { t: (key: string) => string }) {
   return (
     <div className="space-y-4">
       {/* Stats row */}
       <div className="grid grid-cols-3 gap-3">
         {[
-          { label: 'Użytkownicy', value: '2,847', change: '+12%' },
-          { label: 'Przychód', value: '48.2k', change: '+8%' },
-          { label: 'Konwersja', value: '3.2%', change: '+2%' },
+          { key: 'users', value: '2,847', change: '+12%' },
+          { key: 'revenue', value: '48.2k', change: '+8%' },
+          { key: 'conversion', value: '3.2%', change: '+2%' },
         ].map((stat, i) => (
           <motion.div
             key={i}
@@ -122,7 +59,7 @@ function DashboardMockup() {
             transition={{ delay: i * 0.1 }}
             className="bg-white/5 rounded-xl p-3"
           >
-            <div className="text-[10px] text-gray-500 uppercase tracking-wider">{stat.label}</div>
+            <div className="text-[10px] text-gray-500 uppercase tracking-wider">{t(`features.mockups.dashboard.${stat.key}`)}</div>
             <div className="text-xl font-bold text-white mt-1">{stat.value}</div>
             <div className="text-[10px] text-green-400">{stat.change}</div>
           </motion.div>
@@ -131,7 +68,7 @@ function DashboardMockup() {
       
       {/* Chart */}
       <div className="bg-white/5 rounded-xl p-4">
-        <div className="text-xs text-gray-400 mb-3">Przychód (ostatnie 7 dni)</div>
+        <div className="text-xs text-gray-400 mb-3">{t('features.mockups.dashboard.revenueLast7Days')}</div>
         <div className="flex items-end gap-2 h-24">
           {[40, 65, 45, 80, 55, 90, 70].map((h, i) => (
             <motion.div
@@ -151,7 +88,7 @@ function DashboardMockup() {
   );
 }
 
-function ReservationsMockup() {
+function ReservationsMockup({ t }: { t: (key: string) => string }) {
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
   const bookedDays = [5, 6, 12, 13, 14, 20, 21, 27];
   
@@ -195,7 +132,7 @@ function ReservationsMockup() {
             <Calendar className="w-5 h-5 text-red-400" />
           </div>
           <div className="flex-1">
-            <div className="text-sm text-white">Następna rezerwacja</div>
+            <div className="text-sm text-white">{t('features.mockups.reservations.nextReservation')}</div>
             <div className="text-xs text-gray-500">12 gru, 14:00 - Jan Kowalski</div>
           </div>
         </div>
@@ -204,7 +141,7 @@ function ReservationsMockup() {
   );
 }
 
-function GalleryMockup() {
+function GalleryMockup({ t }: { t: (key: string) => string }) {
   return (
     <div className="space-y-3">
       <div className="grid grid-cols-3 gap-2">
@@ -232,14 +169,14 @@ function GalleryMockup() {
         ))}
       </div>
       <div className="flex gap-2">
-        {['Wszystkie', 'Portfolio', 'Projekty'].map((tab, i) => (
+        {['all', 'portfolio', 'projects'].map((tab, i) => (
           <div
             key={tab}
             className={`px-3 py-1 rounded-full text-[10px] ${
               i === 0 ? 'bg-red-500/20 text-red-400' : 'bg-white/5 text-gray-500'
             }`}
           >
-            {tab}
+            {t(`features.mockups.gallery.${tab}`)}
           </div>
         ))}
       </div>
@@ -247,7 +184,7 @@ function GalleryMockup() {
   );
 }
 
-function PaymentsMockup() {
+function PaymentsMockup({ t }: { t: (key: string) => string }) {
   return (
     <div className="space-y-4">
       {/* Card mockup */}
@@ -268,7 +205,7 @@ function PaymentsMockup() {
       
       {/* Recent transactions */}
       <div className="space-y-2">
-        <div className="text-[10px] text-gray-500 uppercase tracking-wider">Ostatnie transakcje</div>
+        <div className="text-[10px] text-gray-500 uppercase tracking-wider">{t('features.mockups.payments.recentTransactions')}</div>
         {[
           { name: 'Subskrypcja Pro', amount: '-99 PLN', status: 'success' },
           { name: 'Doładowanie', amount: '+500 PLN', status: 'success' },
@@ -436,12 +373,45 @@ function SettingsMockup() {
 // ============================================
 
 export default function ClientFeaturesSection() {
+  const { t } = useLanguage();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
   const [activeFeature, setActiveFeature] = useState(features[0]);
+  
+  // Helper function to get feature data with translations
+  const getFeatureData = (id: string) => ({
+    id,
+    icon: features.find(f => f.id === id)?.icon || BarChart3,
+    title: t(`features.items.${id}.title`),
+    shortDesc: t(`features.items.${id}.shortDesc`),
+    description: t(`features.items.${id}.description`),
+    benefits: [
+      t(`features.items.${id}.benefits.0`),
+      t(`features.items.${id}.benefits.1`),
+      t(`features.items.${id}.benefits.2`),
+      t(`features.items.${id}.benefits.3`),
+    ],
+    mockup: getMockupComponent(id, t),
+  });
+  
+  const getMockupComponent = (id: string, t: (key: string) => string) => {
+    switch(id) {
+      case 'dashboard': return <DashboardMockup t={t} />;
+      case 'reservations': return <ReservationsMockup t={t} />;
+      case 'gallery': return <GalleryMockup t={t} />;
+      case 'payments': return <PaymentsMockup t={t} />;
+      case 'users': return <UserPanelMockup />;
+      case 'notifications': return <NotificationsMockup />;
+      case 'chat': return <ChatMockup />;
+      case 'settings': return <SettingsMockup />;
+      default: return <DashboardMockup t={t} />;
+    }
+  };
+  
+  const activeFeatureData = getFeatureData(activeFeature.id);
 
   return (
     <section id="funkcjonalnosci" className="py-24 relative overflow-hidden">
@@ -466,14 +436,14 @@ export default function ClientFeaturesSection() {
             transition={{ delay: 0.1 }}
             className="inline-block px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-gray-400 mb-6"
           >
-            ⚡ Funkcjonalności
+            {t('features.badge')}
           </motion.span>
 
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Co otrzymasz w aplikacji?</span>
+            <span className="text-gradient">{t('features.title')}</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Gotowe moduły, które przyspieszają rozwój i zapewniają profesjonalny UX
+            {t('features.subtitle')}
           </p>
         </motion.div>
 
@@ -510,9 +480,9 @@ export default function ClientFeaturesSection() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className={`font-medium transition-colors ${isActive ? 'text-white' : 'text-gray-300'}`}>
-                      {feature.title}
+                      {t(`features.items.${feature.id}.title`)}
                     </div>
-                    <div className="text-xs text-gray-500 truncate">{feature.shortDesc}</div>
+                    <div className="text-xs text-gray-500 truncate">{t(`features.items.${feature.id}.shortDesc`)}</div>
                   </div>
                   <ChevronRight className={`w-4 h-4 transition-all ${
                     isActive ? 'text-red-400 translate-x-1' : 'text-gray-600'
@@ -541,19 +511,19 @@ export default function ClientFeaturesSection() {
                 {/* Header */}
                 <div className="flex items-start gap-4 mb-6">
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
-                    <activeFeature.icon className="w-7 h-7 text-black" />
+                    <activeFeatureData.icon className="w-7 h-7 text-black" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white mb-1">{activeFeature.title}</h3>
-                    <p className="text-gray-400 text-sm">{activeFeature.description}</p>
+                    <h3 className="text-2xl font-bold text-white mb-1">{activeFeatureData.title}</h3>
+                    <p className="text-gray-400 text-sm">{activeFeatureData.description}</p>
                   </div>
                 </div>
 
                 {/* Benefits */}
                 <div className="grid grid-cols-2 gap-2 mb-6">
-                  {activeFeature.benefits.map((benefit, i) => (
+                  {activeFeatureData.benefits.map((benefit, i) => (
                     <motion.div
-                      key={benefit}
+                      key={i}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.05 }}
@@ -578,7 +548,7 @@ export default function ClientFeaturesSection() {
                       <span className="text-[10px] text-gray-600">app.example.com/{activeFeature.id}</span>
                     </div>
                   </div>
-                  {activeFeature.mockup}
+                  {activeFeatureData.mockup}
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -593,7 +563,7 @@ export default function ClientFeaturesSection() {
           className="mt-16 text-center"
         >
           <p className="text-gray-500 mb-4">
-            Wszystkie moduły są w pełni konfigurowalne i dostosowane do Twoich potrzeb
+            {t('features.bottomText')}
           </p>
           <motion.a
             href="#kontakt"
@@ -601,7 +571,7 @@ export default function ClientFeaturesSection() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            Zapytaj o wycenę
+            {t('features.cta')}
             <ChevronRight className="w-4 h-4" />
           </motion.a>
         </motion.div>

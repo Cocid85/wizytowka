@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
 import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Prawdziwe ikony SVG dla technologii
 const techIcons: Record<string, React.ReactElement> = {
@@ -129,13 +130,14 @@ const technologies = [
     color: '#0175C2',
     textColor: '#ffffff',
     level: 88,
-    description: 'Język dla Flutter',
+    descriptionKey: 'dartDescription',
     size: 'medium',
     category: 'language'
   },
 ];
 
 export default function TechStackSection() {
+  const { t } = useLanguage();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -184,14 +186,14 @@ export default function TechStackSection() {
             transition={{ delay: 0.1 }}
             className="inline-block px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-gray-400 mb-6"
           >
-            💻 Technologie
+            {t('techStack.badge')}
           </motion.span>
           
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Tech Stack</span>
+            <span className="text-gradient">{t('techStack.title')}</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Narzędzia, które wykorzystuję do tworzenia nowoczesnych aplikacji
+            {t('techStack.subtitle')}
           </p>
         </motion.div>
 
@@ -285,7 +287,7 @@ export default function TechStackSection() {
                             opacity: isHovered ? 1 : 0.7,
                           }}
                         >
-                          {tech.description}
+                          {(tech as any).descriptionKey ? t(`techStack.${(tech as any).descriptionKey}`) : tech.description}
                         </motion.p>
                       )}
 

@@ -114,6 +114,103 @@
     "copyright": "All rights reserved.",
     "builtWith": "Built with",
     "and": "and"
+  },
+  "features": {
+    "badge": "⚡ Features",
+    "title": "What will you get in the application?",
+    "subtitle": "Ready-made modules that accelerate development and ensure professional UX",
+    "items": {
+      "dashboard": {
+        "title": "Dashboard",
+        "shortDesc": "Real-time analytics",
+        "description": "Comprehensive panel with charts, statistics and reports. Monitor key metrics and make data-driven decisions.",
+        "benefits": ["Real-time charts", "PDF/CSV report export", "Custom views", "Alerts and notifications"]
+      },
+      "reservations": {
+        "title": "Reservations",
+        "shortDesc": "Intuitive booking system",
+        "description": "Reservation system with calendar, automatic reminders and availability management. Perfect for services.",
+        "benefits": ["Interactive calendar", "SMS/Email reminders", "Availability management", "Google Calendar integration"]
+      },
+      "gallery": {
+        "title": "Gallery",
+        "shortDesc": "Media management",
+        "description": "Elegant gallery with albums, lightbox and lazy loading. Showcase your work in the best light.",
+        "benefits": ["Albums and categories", "Gesture lightbox", "Image optimization", "Drag & drop upload"]
+      },
+      "payments": {
+        "title": "Payments",
+        "shortDesc": "Secure transactions",
+        "description": "Integrated payment system with card support, transfers and automatic invoice generation.",
+        "benefits": ["Stripe / PayU / Przelewy24", "Automatic invoices", "Transaction history", "Subscriptions and plans"]
+      },
+      "users": {
+        "title": "User Panel",
+        "shortDesc": "Account management",
+        "description": "Complete client panel with profile, order history and settings personalization.",
+        "benefits": ["User profile", "Activity history", "Privacy settings", "Two-factor 2FA"]
+      },
+      "notifications": {
+        "title": "Notifications",
+        "shortDesc": "Alert system",
+        "description": "Multi-channel notification system - push, email, SMS. Users always up to date.",
+        "benefits": ["Push notifications", "Email marketing", "SMS gateway", "Notification center"]
+      },
+      "chat": {
+        "title": "Chat",
+        "shortDesc": "Real-time communication",
+        "description": "Built-in chat with customer support, conversation history and online status.",
+        "benefits": ["Live chat", "Message history", "File attachments", "AI Chatbot"]
+      },
+      "settings": {
+        "title": "Configuration",
+        "shortDesc": "Full control",
+        "description": "Administrative panel with advanced settings, user roles and system configuration.",
+        "benefits": ["Roles and permissions", "System configuration", "Activity logs", "Data backup"]
+      }
+    },
+    "mockups": {
+      "dashboard": {
+        "users": "Users",
+        "revenue": "Revenue",
+        "conversion": "Conversion",
+        "revenueLast7Days": "Revenue (last 7 days)"
+      },
+      "reservations": {
+        "nextReservation": "Next reservation"
+      },
+      "payments": {
+        "recentTransactions": "Recent transactions"
+      },
+      "gallery": {
+        "all": "All",
+        "portfolio": "Portfolio",
+        "projects": "Projects"
+      }
+    },
+    "bottomText": "All modules are fully configurable and tailored to your needs",
+    "cta": "Request a quote"
+  },
+  "techStack": {
+    "badge": "💻 Technologies",
+    "title": "Tech Stack",
+    "subtitle": "Tools I use to create modern applications",
+    "dartDescription": "Language for Flutter"
+  },
+  "portfolio": {
+    "badge": "🚀 Projects",
+    "title": "Portfolio",
+    "subtitle": "Selected projects I've completed for clients",
+    "types": {
+      "mobile": "Mobile app",
+      "web": "Website",
+      "hybrid": "Hybrid app"
+    },
+    "visitSite": "Visit site",
+    "cta": {
+      "text": "Have a project idea? Let's talk about implementation.",
+      "button": "Start project"
+    }
   }
 }
 

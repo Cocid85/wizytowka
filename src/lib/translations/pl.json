@@ -114,6 +114,103 @@
     "copyright": "Wszelkie prawa zastrzeżone.",
     "builtWith": "Zbudowane z",
     "and": "i"
+  },
+  "features": {
+    "badge": "⚡ Funkcjonalności",
+    "title": "Co otrzymasz w aplikacji?",
+    "subtitle": "Gotowe moduły, które przyspieszają rozwój i zapewniają profesjonalny UX",
+    "items": {
+      "dashboard": {
+        "title": "Dashboard",
+        "shortDesc": "Analityka w czasie rzeczywistym",
+        "description": "Kompleksowy panel z wykresami, statystykami i raportami. Monitoruj kluczowe wskaźniki i podejmuj decyzje oparte na danych.",
+        "benefits": ["Wykresy w czasie rzeczywistym", "Eksport raportów PDF/CSV", "Customowe widoki", "Alerty i powiadomienia"]
+      },
+      "reservations": {
+        "title": "Rezerwacje",
+        "shortDesc": "Intuicyjny system bookingu",
+        "description": "System rezerwacji z kalendarzem, automatycznymi przypomnieniami i zarządzaniem dostępnością. Idealne dla usług.",
+        "benefits": ["Kalendarz interaktywny", "Przypomnienia SMS/Email", "Zarządzanie dostępnością", "Integracja z Google Calendar"]
+      },
+      "gallery": {
+        "title": "Galeria",
+        "shortDesc": "Zarządzanie mediami",
+        "description": "Elegancka galeria z albumami, lightboxem i lazy loadingiem. Prezentuj swoje prace w najlepszym świetle.",
+        "benefits": ["Albumy i kategorie", "Lightbox z gesturami", "Optymalizacja obrazów", "Drag & drop upload"]
+      },
+      "payments": {
+        "title": "Płatności",
+        "shortDesc": "Bezpieczne transakcje",
+        "description": "Zintegrowany system płatności z obsługą kart, przelewów i automatycznym generowaniem faktur.",
+        "benefits": ["Stripe / PayU / Przelewy24", "Automatyczne faktury", "Historia transakcji", "Subskrypcje i plany"]
+      },
+      "users": {
+        "title": "Panel Użytkownika",
+        "shortDesc": "Zarządzanie kontem",
+        "description": "Kompletny panel klienta z profilem, historią zamówień i personalizacją ustawień.",
+        "benefits": ["Profil użytkownika", "Historia aktywności", "Ustawienia prywatności", "Dwuskładnikowe 2FA"]
+      },
+      "notifications": {
+        "title": "Powiadomienia",
+        "shortDesc": "System alertów",
+        "description": "Wielokanałowy system powiadomień - push, email, SMS. Użytkownicy zawsze na bieżąco.",
+        "benefits": ["Push notifications", "Email marketing", "SMS gateway", "Centrum powiadomień"]
+      },
+      "chat": {
+        "title": "Czat",
+        "shortDesc": "Komunikacja real-time",
+        "description": "Wbudowany czat z obsługą klienta, historia konwersacji i status online.",
+        "benefits": ["Czat na żywo", "Historia wiadomości", "Wysyłanie załączników", "Chatbot AI"]
+      },
+      "settings": {
+        "title": "Konfiguracja",
+        "shortDesc": "Pełna kontrola",
+        "description": "Panel administracyjny z zaawansowanymi ustawieniami, rolami użytkowników i konfiguracją systemu.",
+        "benefits": ["Role i uprawnienia", "Konfiguracja systemu", "Logi aktywności", "Backup danych"]
+      }
+    },
+    "mockups": {
+      "dashboard": {
+        "users": "Użytkownicy",
+        "revenue": "Przychód",
+        "conversion": "Konwersja",
+        "revenueLast7Days": "Przychód (ostatnie 7 dni)"
+      },
+      "reservations": {
+        "nextReservation": "Następna rezerwacja"
+      },
+      "payments": {
+        "recentTransactions": "Ostatnie transakcje"
+      },
+      "gallery": {
+        "all": "Wszystkie",
+        "portfolio": "Portfolio",
+        "projects": "Projekty"
+      }
+    },
+    "bottomText": "Wszystkie moduły są w pełni konfigurowalne i dostosowane do Twoich potrzeb",
+    "cta": "Zapytaj o wycenę"
+  },
+  "techStack": {
+    "badge": "💻 Technologie",
+    "title": "Tech Stack",
+    "subtitle": "Narzędzia, które wykorzystuję do tworzenia nowoczesnych aplikacji",
+    "dartDescription": "Język dla Flutter"
+  },
+  "portfolio": {
+    "badge": "🚀 Realizacje",
+    "title": "Portfolio",
+    "subtitle": "Wybrane projekty, które zrealizowałem dla klientów",
+    "types": {
+      "mobile": "Aplikacja mobilna",
+      "web": "Strona WWW",
+      "hybrid": "Aplikacja hybrydowa"
+    },
+    "visitSite": "Odwiedź stronę",
+    "cta": {
+      "text": "Masz pomysł na projekt? Porozmawiajmy o realizacji.",
+      "button": "Rozpocznij projekt"
+    }
   }
 }
 
