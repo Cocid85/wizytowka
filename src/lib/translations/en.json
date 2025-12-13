@@ -210,6 +210,135 @@
     "cta": {
       "text": "Have a project idea? Let's talk about implementation.",
       "button": "Start project"
+    },
+    "projects": {
+      "kravmaga-app": {
+        "description": "Web + Android app for Krav Maga academy",
+        "longDescription": "Comprehensive system for managing a martial arts academy. Web and mobile (Android) application with panels for students and instructors, attendance system, payments and notifications.",
+        "features": ["Student panel", "Attendance system", "Online payments", "Android app"]
+      },
+      "akademia-web": {
+        "description": "Martial arts and self-defense academy website",
+        "longDescription": "Modern website presenting the Krav Maga academy offer with registration system and training gallery.",
+        "features": ["Registration system", "Photo gallery", "Blog", "SEO optimization"]
+      },
+      "holisticstar": {
+        "description": "Website for wellness and health industry",
+        "longDescription": "Elegant website for a wellness industry specialist with appointment booking system and service presentation.",
+        "features": ["Appointment booking", "Blog", "Contact form", "Responsiveness"]
+      },
+      "djluca": {
+        "description": "DJ and music producer website",
+        "longDescription": "Dynamic website for a DJ with portfolio and booking form for events.",
+        "features": ["Booking form", "Event gallery", "Animations"]
+      }
+    }
+  },
+  "wizard": {
+    "title": "New project",
+    "steps": {
+      "projectType": {
+        "title": "What do you want to create?",
+        "subtitle": "Choose project type",
+        "website": {
+          "label": "Website",
+          "desc": "Website, landing page, store"
+        },
+        "app": {
+          "label": "Application",
+          "desc": "Mobile or web application"
+        }
+      },
+      "specificType": {
+        "title": "What type of {type}?",
+        "subtitle": "Choose the closest description",
+        "website": "website",
+        "app": "application"
+      },
+      "features": {
+        "title": "What features do you need?",
+        "subtitle": "Select all that apply (optional)",
+        "skip": "Skip this step →"
+      },
+      "budget": {
+        "title": "Budget and timeline",
+        "subtitle": "Will help me better match the offer",
+        "budgetLabel": "Approximate budget",
+        "timelineLabel": "When do you need it?"
+      },
+      "contact": {
+        "title": "Last step!",
+        "subtitle": "How can I contact you?",
+        "name": "Full name *",
+        "email": "Email *",
+        "description": "Describe your project (optional)",
+        "descriptionPlaceholder": "Tell me more about your idea, inspirations, expectations...",
+        "submit": "Send brief",
+        "sending": "Sending..."
+      },
+      "success": {
+        "title": "Thank you, {name}!",
+        "message": "I received your brief. I'll get back to you within 24 hours.",
+        "summary": {
+          "type": "Project type:",
+          "features": "Features:",
+          "budget": "Budget:",
+          "selected": "selected"
+        }
+      }
+    },
+    "navigation": {
+      "back": "Back",
+      "next": "Next"
+    },
+    "websiteTypes": {
+      "landing": { "label": "Landing Page", "desc": "Single page promoting product/service" },
+      "business": { "label": "Business", "desc": "Company, services, team presentation" },
+      "portfolio": { "label": "Portfolio", "desc": "Work and projects presentation" },
+      "blog": { "label": "Blog", "desc": "Articles, posts, news" },
+      "ecommerce": { "label": "Online store", "desc": "Online product sales" },
+      "booking": { "label": "With bookings", "desc": "Appointment scheduling, calendar" }
+    },
+    "appTypes": {
+      "business": { "label": "Business", "desc": "Company management, CRM, ERP" },
+      "booking": { "label": "Reservations", "desc": "Appointment scheduling, calendar" },
+      "ecommerce": { "label": "E-commerce", "desc": "Store, payments, cart" },
+      "social": { "label": "Social", "desc": "Profiles, posts, interactions" },
+      "fitness": { "label": "Fitness/Sport", "desc": "Workouts, progress, plans" },
+      "education": { "label": "Educational", "desc": "Courses, lessons, quizzes" }
+    },
+    "websiteFeatures": {
+      "gallery": "Photo gallery",
+      "contact": "Contact form",
+      "blog": "Blog / News",
+      "booking": "Booking system",
+      "payments": "Online payments",
+      "accounts": "User accounts",
+      "analytics": "Statistics / Analytics",
+      "multilang": "Multiple languages"
+    },
+    "appFeatures": {
+      "accounts": "User accounts",
+      "payments": "Online payments",
+      "notifications": "Push notifications",
+      "calendar": "Calendar / Reservations",
+      "chat": "Chat / Messages",
+      "gallery": "Gallery / Media",
+      "stats": "Dashboard / Statistics",
+      "offline": "Offline mode"
+    },
+    "budgetOptions": {
+      "small": { "label": "2-5k PLN", "desc": "Simple project" },
+      "medium": { "label": "5-15k PLN", "desc": "Medium project" },
+      "large": { "label": "15-30k PLN", "desc": "Advanced project" },
+      "enterprise": { "label": "30k+ PLN", "desc": "Large project" },
+      "unknown": { "label": "I don't know yet", "desc": "Help me estimate" }
+    },
+    "timelineOptions": {
+      "asap": { "label": "As soon as possible", "desc": "2-4 weeks" },
+      "month": { "label": "1-2 months", "desc": "Standard time" },
+      "quarter": { "label": "2-3 months", "desc": "Advanced project" },
+      "flexible": { "label": "Flexible deadline", "desc": "No rush" }
     }
   }
 }

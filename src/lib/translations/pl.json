@@ -210,6 +210,135 @@
     "cta": {
       "text": "Masz pomysł na projekt? Porozmawiajmy o realizacji.",
       "button": "Rozpocznij projekt"
+    },
+    "projects": {
+      "kravmaga-app": {
+        "description": "Aplikacja Web + Android dla akademii Krav Maga",
+        "longDescription": "Kompleksowy system do zarządzania akademią sztuk walki. Aplikacja webowa i mobilna (Android) z panelem dla kursantów i instruktorów, systemem obecności, płatności i powiadomień.",
+        "features": ["Panel kursanta", "System obecności", "Płatności online", "Aplikacja Android"]
+      },
+      "akademia-web": {
+        "description": "Strona akademii sztuk walki i samoobrony",
+        "longDescription": "Nowoczesna strona internetowa prezentująca ofertę akademii Krav Maga z systemem zapisów i galerią treningów.",
+        "features": ["System zapisów", "Galeria zdjęć", "Blog", "SEO optymalizacja"]
+      },
+      "holisticstar": {
+        "description": "Strona dla branży wellness i zdrowia",
+        "longDescription": "Elegancka strona internetowa dla specjalisty z branży wellness, z systemem rezerwacji wizyt i prezentacją usług.",
+        "features": ["Rezerwacja wizyt", "Blog", "Formularz kontaktowy", "Responsywność"]
+      },
+      "djluca": {
+        "description": "Strona DJ-a i producenta muzycznego",
+        "longDescription": "Dynamiczna strona dla DJ-a z portfolio i formularzem bookingowym na wydarzenia.",
+        "features": ["Formularz bookingu", "Galeria eventów", "Animacje"]
+      }
+    }
+  },
+  "wizard": {
+    "title": "Nowy projekt",
+    "steps": {
+      "projectType": {
+        "title": "Co chcesz stworzyć?",
+        "subtitle": "Wybierz typ projektu",
+        "website": {
+          "label": "Stronę WWW",
+          "desc": "Strona internetowa, landing page, sklep"
+        },
+        "app": {
+          "label": "Aplikację",
+          "desc": "Aplikacja mobilna lub webowa"
+        }
+      },
+      "specificType": {
+        "title": "Jaki typ {type}?",
+        "subtitle": "Wybierz najbliższy opis",
+        "website": "strony",
+        "app": "aplikacji"
+      },
+      "features": {
+        "title": "Jakie funkcje potrzebujesz?",
+        "subtitle": "Wybierz wszystkie pasujące (opcjonalne)",
+        "skip": "Pomiń ten krok →"
+      },
+      "budget": {
+        "title": "Budżet i termin",
+        "subtitle": "Pomoże mi lepiej dopasować ofertę",
+        "budgetLabel": "Orientacyjny budżet",
+        "timelineLabel": "Kiedy potrzebujesz?"
+      },
+      "contact": {
+        "title": "Ostatni krok!",
+        "subtitle": "Jak mogę się z Tobą skontaktować?",
+        "name": "Imię i nazwisko *",
+        "email": "Email *",
+        "description": "Opisz swój projekt (opcjonalnie)",
+        "descriptionPlaceholder": "Opowiedz więcej o swoim pomyśle, inspiracjach, oczekiwaniach...",
+        "submit": "Wyślij brief",
+        "sending": "Wysyłanie..."
+      },
+      "success": {
+        "title": "Dziękuję, {name}!",
+        "message": "Otrzymałem Twój brief. Odezwę się w ciągu 24 godzin.",
+        "summary": {
+          "type": "Typ projektu:",
+          "features": "Funkcje:",
+          "budget": "Budżet:",
+          "selected": "wybranych"
+        }
+      }
+    },
+    "navigation": {
+      "back": "Wstecz",
+      "next": "Dalej"
+    },
+    "websiteTypes": {
+      "landing": { "label": "Landing Page", "desc": "Jedna strona promująca produkt/usługę" },
+      "business": { "label": "Firmowa", "desc": "Prezentacja firmy, usług, zespołu" },
+      "portfolio": { "label": "Portfolio", "desc": "Prezentacja prac i projektów" },
+      "blog": { "label": "Blog", "desc": "Artykuły, wpisy, aktualności" },
+      "ecommerce": { "label": "Sklep online", "desc": "Sprzedaż produktów online" },
+      "booking": { "label": "Z rezerwacjami", "desc": "Umawianie wizyt, kalendarz" }
+    },
+    "appTypes": {
+      "business": { "label": "Biznesowa", "desc": "Zarządzanie firmą, CRM, ERP" },
+      "booking": { "label": "Rezerwacje", "desc": "Umawianie wizyt, kalendarz" },
+      "ecommerce": { "label": "E-commerce", "desc": "Sklep, płatności, koszyk" },
+      "social": { "label": "Społecznościowa", "desc": "Profile, posty, interakcje" },
+      "fitness": { "label": "Fitness/Sport", "desc": "Treningi, postępy, plany" },
+      "education": { "label": "Edukacyjna", "desc": "Kursy, lekcje, quizy" }
+    },
+    "websiteFeatures": {
+      "gallery": "Galeria zdjęć",
+      "contact": "Formularz kontaktowy",
+      "blog": "Blog / Aktualności",
+      "booking": "System rezerwacji",
+      "payments": "Płatności online",
+      "accounts": "Konta użytkowników",
+      "analytics": "Statystyki / Analytics",
+      "multilang": "Wiele języków"
+    },
+    "appFeatures": {
+      "accounts": "Konta użytkowników",
+      "payments": "Płatności online",
+      "notifications": "Powiadomienia push",
+      "calendar": "Kalendarz / Rezerwacje",
+      "chat": "Czat / Wiadomości",
+      "gallery": "Galeria / Media",
+      "stats": "Dashboard / Statystyki",
+      "offline": "Tryb offline"
+    },
+    "budgetOptions": {
+      "small": { "label": "2-5 tys. zł", "desc": "Prosty projekt" },
+      "medium": { "label": "5-15 tys. zł", "desc": "Średni projekt" },
+      "large": { "label": "15-30 tys. zł", "desc": "Rozbudowany projekt" },
+      "enterprise": { "label": "30+ tys. zł", "desc": "Duży projekt" },
+      "unknown": { "label": "Nie wiem jeszcze", "desc": "Pomóż mi oszacować" }
+    },
+    "timelineOptions": {
+      "asap": { "label": "Jak najszybciej", "desc": "2-4 tygodnie" },
+      "month": { "label": "1-2 miesiące", "desc": "Standardowy czas" },
+      "quarter": { "label": "2-3 miesiące", "desc": "Rozbudowany projekt" },
+      "flexible": { "label": "Elastyczny termin", "desc": "Bez pośpiechu" }
     }
   }
 }

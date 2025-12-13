@@ -32,6 +32,7 @@ import {
   Palette,
   X
 } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // ============================================
 // TYPY
@@ -53,64 +54,65 @@ interface StepProps {
   updateData: (updates: Partial<WizardData>) => void;
   onNext: () => void;
   onBack: () => void;
+  t: (key: string) => string;
 }
 
 // ============================================
-// OPCJE DO WYBORU
+// OPCJE DO WYBORU (tylko ikony i ID)
 // ============================================
 const websiteTypes = [
-  { id: 'landing', label: 'Landing Page', desc: 'Jedna strona promująca produkt/usługę', icon: FileText },
-  { id: 'business', label: 'Firmowa', desc: 'Prezentacja firmy, usług, zespołu', icon: Building2 },
-  { id: 'portfolio', label: 'Portfolio', desc: 'Prezentacja prac i projektów', icon: Palette },
-  { id: 'blog', label: 'Blog', desc: 'Artykuły, wpisy, aktualności', icon: MessageSquare },
-  { id: 'ecommerce', label: 'Sklep online', desc: 'Sprzedaż produktów online', icon: ShoppingCart },
-  { id: 'booking', label: 'Z rezerwacjami', desc: 'Umawianie wizyt, kalendarz', icon: Calendar },
+  { id: 'landing', icon: FileText },
+  { id: 'business', icon: Building2 },
+  { id: 'portfolio', icon: Palette },
+  { id: 'blog', icon: MessageSquare },
+  { id: 'ecommerce', icon: ShoppingCart },
+  { id: 'booking', icon: Calendar },
 ];
 
 const appTypes = [
-  { id: 'business', label: 'Biznesowa', desc: 'Zarządzanie firmą, CRM, ERP', icon: Briefcase },
-  { id: 'booking', label: 'Rezerwacje', desc: 'Umawianie wizyt, kalendarz', icon: Calendar },
-  { id: 'ecommerce', label: 'E-commerce', desc: 'Sklep, płatności, koszyk', icon: ShoppingCart },
-  { id: 'social', label: 'Społecznościowa', desc: 'Profile, posty, interakcje', icon: Users },
-  { id: 'fitness', label: 'Fitness/Sport', desc: 'Treningi, postępy, plany', icon: Dumbbell },
-  { id: 'education', label: 'Edukacyjna', desc: 'Kursy, lekcje, quizy', icon: GraduationCap },
+  { id: 'business', icon: Briefcase },
+  { id: 'booking', icon: Calendar },
+  { id: 'ecommerce', icon: ShoppingCart },
+  { id: 'social', icon: Users },
+  { id: 'fitness', icon: Dumbbell },
+  { id: 'education', icon: GraduationCap },
 ];
 
 const websiteFeatures = [
-  { id: 'gallery', label: 'Galeria zdjęć', icon: ImageIcon },
-  { id: 'contact', label: 'Formularz kontaktowy', icon: MessageSquare },
-  { id: 'blog', label: 'Blog / Aktualności', icon: FileText },
-  { id: 'booking', label: 'System rezerwacji', icon: Calendar },
-  { id: 'payments', label: 'Płatności online', icon: CreditCard },
-  { id: 'accounts', label: 'Konta użytkowników', icon: Users },
-  { id: 'analytics', label: 'Statystyki / Analytics', icon: BarChart3 },
-  { id: 'multilang', label: 'Wiele języków', icon: Globe },
+  { id: 'gallery', icon: ImageIcon },
+  { id: 'contact', icon: MessageSquare },
+  { id: 'blog', icon: FileText },
+  { id: 'booking', icon: Calendar },
+  { id: 'payments', icon: CreditCard },
+  { id: 'accounts', icon: Users },
+  { id: 'analytics', icon: BarChart3 },
+  { id: 'multilang', icon: Globe },
 ];
 
 const appFeatures = [
-  { id: 'accounts', label: 'Konta użytkowników', icon: Users },
-  { id: 'payments', label: 'Płatności online', icon: CreditCard },
-  { id: 'notifications', label: 'Powiadomienia push', icon: Bell },
-  { id: 'calendar', label: 'Kalendarz / Rezerwacje', icon: Calendar },
-  { id: 'chat', label: 'Czat / Wiadomości', icon: MessageSquare },
-  { id: 'gallery', label: 'Galeria / Media', icon: ImageIcon },
-  { id: 'stats', label: 'Dashboard / Statystyki', icon: BarChart3 },
-  { id: 'offline', label: 'Tryb offline', icon: Lock },
+  { id: 'accounts', icon: Users },
+  { id: 'payments', icon: CreditCard },
+  { id: 'notifications', icon: Bell },
+  { id: 'calendar', icon: Calendar },
+  { id: 'chat', icon: MessageSquare },
+  { id: 'gallery', icon: ImageIcon },
+  { id: 'stats', icon: BarChart3 },
+  { id: 'offline', icon: Lock },
 ];
 
 const budgetOptions = [
-  { id: 'small', label: '2-5 tys. zł', desc: 'Prosty projekt' },
-  { id: 'medium', label: '5-15 tys. zł', desc: 'Średni projekt' },
-  { id: 'large', label: '15-30 tys. zł', desc: 'Rozbudowany projekt' },
-  { id: 'enterprise', label: '30+ tys. zł', desc: 'Duży projekt' },
-  { id: 'unknown', label: 'Nie wiem jeszcze', desc: 'Pomóż mi oszacować' },
+  { id: 'small' },
+  { id: 'medium' },
+  { id: 'large' },
+  { id: 'enterprise' },
+  { id: 'unknown' },
 ];
 
 const timelineOptions = [
-  { id: 'asap', label: 'Jak najszybciej', desc: '2-4 tygodnie' },
-  { id: 'month', label: '1-2 miesiące', desc: 'Standardowy czas' },
-  { id: 'quarter', label: '2-3 miesiące', desc: 'Rozbudowany projekt' },
-  { id: 'flexible', label: 'Elastyczny termin', desc: 'Bez pośpiechu' },
+  { id: 'asap' },
+  { id: 'month' },
+  { id: 'quarter' },
+  { id: 'flexible' },
 ];
 
 // ============================================
@@ -118,18 +120,18 @@ const timelineOptions = [
 // ============================================
 
 // Krok 1: Typ projektu
-function StepProjectType({ data, updateData, onNext }: StepProps) {
+function StepProjectType({ data, updateData, onNext, t }: StepProps) {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h3 className="text-2xl font-bold text-white mb-2">Co chcesz stworzyć?</h3>
-        <p className="text-gray-400">Wybierz typ projektu</p>
+        <h3 className="text-2xl font-bold text-white mb-2">{t('wizard.steps.projectType.title')}</h3>
+        <p className="text-gray-400">{t('wizard.steps.projectType.subtitle')}</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {[
-          { id: 'website', label: 'Stronę WWW', desc: 'Strona internetowa, landing page, sklep', icon: Globe },
-          { id: 'app', label: 'Aplikację', desc: 'Aplikacja mobilna lub webowa', icon: Smartphone },
+          { id: 'website', icon: Globe },
+          { id: 'app', icon: Smartphone },
         ].map((option) => (
           <motion.button
             key={option.id}
@@ -154,8 +156,8 @@ function StepProjectType({ data, updateData, onNext }: StepProps) {
                 data.projectType === option.id ? 'text-white' : 'text-gray-400'
               }`} />
             </div>
-            <h4 className="text-xl font-semibold text-white mb-1">{option.label}</h4>
-            <p className="text-sm text-gray-400">{option.desc}</p>
+            <h4 className="text-xl font-semibold text-white mb-1">{t(`wizard.steps.projectType.${option.id}.label`)}</h4>
+            <p className="text-sm text-gray-400">{t(`wizard.steps.projectType.${option.id}.desc`)}</p>
             
             {data.projectType === option.id && (
               <motion.div
@@ -174,18 +176,19 @@ function StepProjectType({ data, updateData, onNext }: StepProps) {
 }
 
 // Krok 2: Typ strony / aplikacji
-function StepSpecificType({ data, updateData, onNext, onBack }: StepProps) {
+function StepSpecificType({ data, updateData, onNext, onBack, t }: StepProps) {
   const options = data.projectType === 'website' ? websiteTypes : appTypes;
   const currentValue = data.projectType === 'website' ? data.websiteType : data.appType;
   const updateKey = data.projectType === 'website' ? 'websiteType' : 'appType';
+  const typeKey = data.projectType === 'website' ? 'website' : 'app';
 
   return (
     <div className="space-y-8">
       <div className="text-center">
         <h3 className="text-2xl font-bold text-white mb-2">
-          Jaki typ {data.projectType === 'website' ? 'strony' : 'aplikacji'}?
+          {t('wizard.steps.specificType.title').replace('{type}', t(`wizard.steps.specificType.${typeKey}`))}
         </h3>
-        <p className="text-gray-400">Wybierz najbliższy opis</p>
+        <p className="text-gray-400">{t('wizard.steps.specificType.subtitle')}</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -215,8 +218,8 @@ function StepSpecificType({ data, updateData, onNext, onBack }: StepProps) {
                 }`} />
               </div>
               <div>
-                <h4 className="font-semibold text-white text-sm">{option.label}</h4>
-                <p className="text-xs text-gray-500 mt-0.5">{option.desc}</p>
+                <h4 className="font-semibold text-white text-sm">{t(`wizard.${data.projectType === 'website' ? 'websiteTypes' : 'appTypes'}.${option.id}.label`)}</h4>
+                <p className="text-xs text-gray-500 mt-0.5">{t(`wizard.${data.projectType === 'website' ? 'websiteTypes' : 'appTypes'}.${option.id}.desc`)}</p>
               </div>
             </div>
             
@@ -237,7 +240,7 @@ function StepSpecificType({ data, updateData, onNext, onBack }: StepProps) {
 }
 
 // Krok 3: Funkcjonalności
-function StepFeatures({ data, updateData, onNext, onBack }: StepProps) {
+function StepFeatures({ data, updateData, onNext, onBack, t }: StepProps) {
   const features = data.projectType === 'website' ? websiteFeatures : appFeatures;
 
   const toggleFeature = (featureId: string) => {
@@ -251,8 +254,8 @@ function StepFeatures({ data, updateData, onNext, onBack }: StepProps) {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h3 className="text-2xl font-bold text-white mb-2">Jakie funkcje potrzebujesz?</h3>
-        <p className="text-gray-400">Wybierz wszystkie pasujące (opcjonalne)</p>
+        <h3 className="text-2xl font-bold text-white mb-2">{t('wizard.steps.features.title')}</h3>
+        <p className="text-gray-400">{t('wizard.steps.features.subtitle')}</p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -278,7 +281,7 @@ function StepFeatures({ data, updateData, onNext, onBack }: StepProps) {
                 <feature.icon className={`w-5 h-5 ${isSelected ? 'text-white' : 'text-gray-400'}`} />
               </div>
               <p className={`text-xs font-medium ${isSelected ? 'text-white' : 'text-gray-400'}`}>
-                {feature.label}
+                {t(`wizard.${data.projectType === 'website' ? 'websiteFeatures' : 'appFeatures'}.${feature.id}`)}
               </p>
               
               {isSelected && (
@@ -300,7 +303,7 @@ function StepFeatures({ data, updateData, onNext, onBack }: StepProps) {
           onClick={onNext}
           className="text-sm text-gray-500 hover:text-white transition-colors"
         >
-          Pomiń ten krok →
+          {t('wizard.steps.features.skip')}
         </button>
       </div>
     </div>
@@ -308,18 +311,18 @@ function StepFeatures({ data, updateData, onNext, onBack }: StepProps) {
 }
 
 // Krok 4: Budżet i termin
-function StepBudgetTimeline({ data, updateData, onNext, onBack }: StepProps) {
+function StepBudgetTimeline({ data, updateData, onNext, onBack, t }: StepProps) {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h3 className="text-2xl font-bold text-white mb-2">Budżet i termin</h3>
-        <p className="text-gray-400">Pomoże mi lepiej dopasować ofertę</p>
+        <h3 className="text-2xl font-bold text-white mb-2">{t('wizard.steps.budget.title')}</h3>
+        <p className="text-gray-400">{t('wizard.steps.budget.subtitle')}</p>
       </div>
 
       {/* Budżet */}
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-3">
-          Orientacyjny budżet
+          {t('wizard.steps.budget.budgetLabel')}
         </label>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {budgetOptions.map((option) => (
@@ -336,9 +339,9 @@ function StepBudgetTimeline({ data, updateData, onNext, onBack }: StepProps) {
               <p className={`font-semibold text-sm ${
                 data.budget === option.id ? 'text-red-400' : 'text-white'
               }`}>
-                {option.label}
+                {t(`wizard.budgetOptions.${option.id}.label`)}
               </p>
-              <p className="text-xs text-gray-500">{option.desc}</p>
+              <p className="text-xs text-gray-500">{t(`wizard.budgetOptions.${option.id}.desc`)}</p>
             </motion.button>
           ))}
         </div>
@@ -347,7 +350,7 @@ function StepBudgetTimeline({ data, updateData, onNext, onBack }: StepProps) {
       {/* Termin */}
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-3">
-          Kiedy potrzebujesz?
+          {t('wizard.steps.budget.timelineLabel')}
         </label>
         <div className="grid grid-cols-2 gap-2">
           {timelineOptions.map((option) => (
@@ -364,9 +367,9 @@ function StepBudgetTimeline({ data, updateData, onNext, onBack }: StepProps) {
               <p className={`font-semibold text-sm ${
                 data.timeline === option.id ? 'text-red-400' : 'text-white'
               }`}>
-                {option.label}
+                {t(`wizard.timelineOptions.${option.id}.label`)}
               </p>
-              <p className="text-xs text-gray-500">{option.desc}</p>
+              <p className="text-xs text-gray-500">{t(`wizard.timelineOptions.${option.id}.desc`)}</p>
             </motion.button>
           ))}
         </div>
@@ -376,7 +379,7 @@ function StepBudgetTimeline({ data, updateData, onNext, onBack }: StepProps) {
 }
 
 // Krok 5: Dane kontaktowe i opis
-function StepContact({ data, updateData, onNext, onBack }: StepProps) {
+function StepContact({ data, updateData, onNext, onBack, t }: StepProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async () => {
@@ -386,6 +389,16 @@ function StepContact({ data, updateData, onNext, onBack }: StepProps) {
     
     try {
       // Wysyłanie briefu do API
+      const projectTypeLabel = data.projectType === 'website' ? t('portfolio.types.web') : t('portfolio.types.mobile');
+      const specificTypeLabel = data.projectType === 'website' 
+        ? (data.websiteType ? t(`wizard.websiteTypes.${data.websiteType}.label`) : t('wizard.steps.success.summary.selected'))
+        : (data.appType ? t(`wizard.appTypes.${data.appType}.label`) : t('wizard.steps.success.summary.selected'));
+      const featuresLabel = data.features.length > 0 
+        ? data.features.map(f => t(`wizard.${data.projectType === 'website' ? 'websiteFeatures' : 'appFeatures'}.${f}`)).join(', ')
+        : t('wizard.steps.success.summary.selected');
+      const budgetLabel = data.budget ? t(`wizard.budgetOptions.${data.budget}.label`) : t('wizard.steps.success.summary.selected');
+      const timelineLabel = data.timeline ? t(`wizard.timelineOptions.${data.timeline}.label`) : t('wizard.steps.success.summary.selected');
+      
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -394,7 +407,7 @@ function StepContact({ data, updateData, onNext, onBack }: StepProps) {
         body: JSON.stringify({
           name: data.name,
           email: data.email,
-          message: `BRIEF PROJEKTU:\n\nTyp: ${data.projectType === 'website' ? 'Strona WWW' : 'Aplikacja'}\n${data.projectType === 'website' ? `Typ strony: ${websiteTypes.find(w => w.id === data.websiteType)?.label || 'Nie wybrano'}` : `Typ aplikacji: ${appTypes.find(a => a.id === data.appType)?.label || 'Nie wybrano'}`}\n\nFunkcje: ${data.features.length > 0 ? data.features.join(', ') : 'Brak'}\nBudżet: ${budgetOptions.find(b => b.id === data.budget)?.label || 'Nie wybrano'}\nTermin: ${timelineOptions.find(t => t.id === data.timeline)?.label || 'Nie wybrano'}\n\nOpis projektu:\n${data.description || 'Brak opisu'}`,
+          message: `BRIEF PROJEKTU:\n\nTyp: ${projectTypeLabel}\n${data.projectType === 'website' ? `Typ strony: ${specificTypeLabel}` : `Typ aplikacji: ${specificTypeLabel}`}\n\nFunkcje: ${featuresLabel}\nBudżet: ${budgetLabel}\nTermin: ${timelineLabel}\n\nOpis projektu:\n${data.description || t('wizard.steps.success.summary.selected')}`,
         }),
       });
 
@@ -415,47 +428,47 @@ function StepContact({ data, updateData, onNext, onBack }: StepProps) {
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h3 className="text-2xl font-bold text-white mb-2">Ostatni krok!</h3>
-        <p className="text-gray-400">Jak mogę się z Tobą skontaktować?</p>
+        <h3 className="text-2xl font-bold text-white mb-2">{t('wizard.steps.contact.title')}</h3>
+        <p className="text-gray-400">{t('wizard.steps.contact.subtitle')}</p>
       </div>
 
       <div className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Imię i nazwisko *
+            {t('wizard.steps.contact.name')}
           </label>
           <input
             type="text"
             value={data.name}
             onChange={(e) => updateData({ name: e.target.value })}
             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors"
-            placeholder="Jan Kowalski"
+            placeholder={t('contact.form.namePlaceholder')}
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Email *
+            {t('wizard.steps.contact.email')}
           </label>
           <input
             type="email"
             value={data.email}
             onChange={(e) => updateData({ email: e.target.value })}
             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors"
-            placeholder="jan@example.com"
+            placeholder={t('contact.form.emailPlaceholder')}
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Opisz swój projekt (opcjonalnie)
+            {t('wizard.steps.contact.description')}
           </label>
           <textarea
             value={data.description}
             onChange={(e) => updateData({ description: e.target.value })}
             rows={4}
             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors resize-none"
-            placeholder="Opowiedz więcej o swoim pomyśle, inspiracjach, oczekiwaniach..."
+            placeholder={t('wizard.steps.contact.descriptionPlaceholder')}
           />
         </div>
       </div>
@@ -470,12 +483,12 @@ function StepContact({ data, updateData, onNext, onBack }: StepProps) {
         {isSubmitting ? (
           <>
             <Loader2 className="w-5 h-5 animate-spin" />
-            Wysyłanie...
+            {t('wizard.steps.contact.sending')}
           </>
         ) : (
           <>
             <Send className="w-5 h-5" />
-            Wyślij brief
+            {t('wizard.steps.contact.submit')}
           </>
         )}
       </motion.button>
@@ -484,7 +497,7 @@ function StepContact({ data, updateData, onNext, onBack }: StepProps) {
 }
 
 // Krok 6: Sukces
-function StepSuccess({ data }: { data: WizardData }) {
+function StepSuccess({ data, t }: { data: WizardData; t: (key: string) => string }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -501,29 +514,29 @@ function StepSuccess({ data }: { data: WizardData }) {
       </motion.div>
       
       <h3 className="text-2xl font-bold text-white mb-2">
-        Dziękuję, {data.name.split(' ')[0]}!
+        {t('wizard.steps.success.title').replace('{name}', data.name.split(' ')[0])}
       </h3>
       <p className="text-gray-400 mb-6">
-        Otrzymałem Twój brief. Odezwę się w ciągu 24 godzin.
+        {t('wizard.steps.success.message')}
       </p>
       
       {/* Podsumowanie */}
       <div className="text-left bg-white/5 rounded-xl p-4 space-y-2 text-sm">
         <div className="flex justify-between">
-          <span className="text-gray-500">Typ projektu:</span>
-          <span className="text-white">{data.projectType === 'website' ? 'Strona WWW' : 'Aplikacja'}</span>
+          <span className="text-gray-500">{t('wizard.steps.success.summary.type')}</span>
+          <span className="text-white">{data.projectType === 'website' ? t('portfolio.types.web') : t('portfolio.types.mobile')}</span>
         </div>
         {data.features.length > 0 && (
           <div className="flex justify-between">
-            <span className="text-gray-500">Funkcje:</span>
-            <span className="text-white">{data.features.length} wybranych</span>
+            <span className="text-gray-500">{t('wizard.steps.success.summary.features')}</span>
+            <span className="text-white">{data.features.length} {t('wizard.steps.success.summary.selected')}</span>
           </div>
         )}
         {data.budget && (
           <div className="flex justify-between">
-            <span className="text-gray-500">Budżet:</span>
+            <span className="text-gray-500">{t('wizard.steps.success.summary.budget')}</span>
             <span className="text-white">
-              {budgetOptions.find(b => b.id === data.budget)?.label}
+              {t(`wizard.budgetOptions.${data.budget}.label`)}
             </span>
           </div>
         )}
@@ -536,6 +549,7 @@ function StepSuccess({ data }: { data: WizardData }) {
 // GŁÓWNY KOMPONENT
 // ============================================
 export default function ProjectWizard({ onClose }: { onClose?: () => void }) {
+  const { t } = useLanguage();
   const [currentStep, setCurrentStep] = useState(0);
   const [data, setData] = useState<WizardData>({
     projectType: null,
@@ -559,7 +573,7 @@ export default function ProjectWizard({ onClose }: { onClose?: () => void }) {
   const goNext = () => setCurrentStep(prev => Math.min(prev + 1, totalSteps));
   const goBack = () => setCurrentStep(prev => Math.max(prev - 1, 0));
 
-  const stepProps = { data, updateData, onNext: goNext, onBack: goBack };
+  const stepProps = { data, updateData, onNext: goNext, onBack: goBack, t };
 
   return (
     <div className="relative bg-gray-900/95 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
@@ -570,7 +584,7 @@ export default function ProjectWizard({ onClose }: { onClose?: () => void }) {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
               <Sparkles className="w-4 h-4 text-white" />
             </div>
-            <span className="font-semibold text-white">Nowy projekt</span>
+            <span className="font-semibold text-white">{t('wizard.title')}</span>
           </div>
           {onClose && (
             <button
@@ -610,7 +624,7 @@ export default function ProjectWizard({ onClose }: { onClose?: () => void }) {
             {currentStep === 2 && <StepFeatures {...stepProps} />}
             {currentStep === 3 && <StepBudgetTimeline {...stepProps} />}
             {currentStep === 4 && <StepContact {...stepProps} />}
-            {currentStep === 5 && <StepSuccess data={data} />}
+            {currentStep === 5 && <StepSuccess data={data} t={t} />}
           </motion.div>
         </AnimatePresence>
       </div>
@@ -623,7 +637,7 @@ export default function ProjectWizard({ onClose }: { onClose?: () => void }) {
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Wstecz
+            {t('wizard.navigation.back')}
           </button>
           
           {currentStep < 4 && (
@@ -631,7 +645,7 @@ export default function ProjectWizard({ onClose }: { onClose?: () => void }) {
               onClick={goNext}
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors"
             >
-              Dalej
+              {t('wizard.navigation.next')}
               <ArrowRight className="w-4 h-4" />
             </button>
           )}

@@ -10,62 +10,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 interface Project {
   id: string;
   title: string;
-  description: string;
-  longDescription: string;
   type: 'mobile' | 'web' | 'hybrid';
   url?: string;
   technologies: string[];
-  features: string[];
-  image?: string;
   gradient: string;
+  image?: string;
 }
-
-const projects: Project[] = [
-  {
-    id: 'kravmaga-app',
-    title: 'kravmaga-aplikacja.pl',
-    description: 'Aplikacja Web + Android dla akademii Krav Maga',
-    longDescription: 'Kompleksowy system do zarządzania akademią sztuk walki. Aplikacja webowa i mobilna (Android) z panelem dla kursantów i instruktorów, systemem obecności, płatności i powiadomień.',
-    type: 'hybrid',
-    url: 'https://kravmaga-aplikacja.pl',
-    technologies: ['Flutter', 'Dart', 'Firebase', 'Web', 'Android'],
-    features: ['Panel kursanta', 'System obecności', 'Płatności online', 'Aplikacja Android'],
-    gradient: 'from-red-500 via-red-600 to-black',
-  },
-  {
-    id: 'akademia-web',
-    title: 'akademia-samoobrony.pl',
-    description: 'Strona akademii sztuk walki i samoobrony',
-    longDescription: 'Nowoczesna strona internetowa prezentująca ofertę akademii Krav Maga z systemem zapisów i galerią treningów.',
-    type: 'web',
-    url: 'https://akademia-samoobrony.pl',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind', 'Framer Motion'],
-    features: ['System zapisów', 'Galeria zdjęć', 'Blog', 'SEO optymalizacja'],
-    gradient: 'from-white via-red-500 to-[#00ff41]',
-  },
-  {
-    id: 'holisticstar',
-    title: 'holisticstar.pl',
-    description: 'Strona dla branży wellness i zdrowia',
-    longDescription: 'Elegancka strona internetowa dla specjalisty z branży wellness, z systemem rezerwacji wizyt i prezentacją usług.',
-    type: 'web',
-    url: 'https://holisticstar.pl',
-    technologies: ['Next.js', 'React', 'Tailwind', 'Calendly'],
-    features: ['Rezerwacja wizyt', 'Blog', 'Formularz kontaktowy', 'Responsywność'],
-    gradient: 'from-purple-500 via-pink-500 to-rose-500',
-  },
-  {
-    id: 'djluca',
-    title: 'djluca.pl',
-    description: 'Strona DJ-a i producenta muzycznego',
-    longDescription: 'Dynamiczna strona dla DJ-a z portfolio i formularzem bookingowym na wydarzenia.',
-    type: 'web',
-    url: 'https://djluca.pl',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind'],
-    features: ['Formularz bookingu', 'Galeria eventów', 'Animacje'],
-    gradient: 'from-cyan-500 via-blue-500 to-purple-500',
-  },
-];
 
 // Mockup telefonu
 function PhoneMockup({ project, isHovered }: { project: Project; isHovered: boolean }) {
@@ -212,7 +162,7 @@ function BrowserMockup({ project, isHovered }: { project: Project; isHovered: bo
 }
 
 // Mockup hybrydowy (Web + Mobile)
-function HybridMockup({ project, isHovered }: { project: Project; isHovered: boolean }) {
+function HybridMockup({ project, isHovered, t }: { project: Project; isHovered: boolean; t: (key: string) => string }) {
   return (
     <div className="relative mx-auto w-full max-w-[450px] h-[320px]">
       {/* Przeglądarka w tle */}
@@ -335,6 +285,18 @@ function HybridMockup({ project, isHovered }: { project: Project; isHovered: boo
 // Karta projektu
 function ProjectCard({ project, index, inView, t }: { project: Project; index: number; inView: boolean; t: (key: string) => string }) {
   const [isHovered, setIsHovered] = useState(false);
+  
+  // Get translated project data
+  const projectData = {
+    description: t(`portfolio.projects.${project.id}.description`),
+    longDescription: t(`portfolio.projects.${project.id}.longDescription`),
+    features: [
+      t(`portfolio.projects.${project.id}.features.0`),
+      t(`portfolio.projects.${project.id}.features.1`),
+      t(`portfolio.projects.${project.id}.features.2`),
+      t(`portfolio.projects.${project.id}.features.3`),
+    ],
+  };
 
   const handleClick = () => {
     if (project.url) {
@@ -357,6 +319,8 @@ function ProjectCard({ project, index, inView, t }: { project: Project; index: n
         <div className={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
           {project.type === 'mobile' ? (
             <PhoneMockup project={project} isHovered={isHovered} />
+          ) : project.type === 'hybrid' ? (
+            <HybridMockup project={project} isHovered={isHovered} t={t} />
           ) : (
             <BrowserMockup project={project} isHovered={isHovered} />
           )}
@@ -410,7 +374,7 @@ function ProjectCard({ project, index, inView, t }: { project: Project; index: n
             transition={{ delay: index * 0.15 + 0.2 }}
             className="text-gray-400 mb-6 leading-relaxed"
           >
-            {project.longDescription}
+            {projectData.longDescription}
           </motion.p>
 
           {/* Technologie */}
@@ -437,9 +401,9 @@ function ProjectCard({ project, index, inView, t }: { project: Project; index: n
             transition={{ delay: index * 0.15 + 0.3 }}
             className={`grid grid-cols-2 gap-2 mb-6 ${index % 2 === 1 ? 'lg:justify-items-end' : ''}`}
           >
-            {project.features.map((feature, i) => (
+            {projectData.features.map((feature, i) => (
               <div
-                key={feature}
+                key={i}
                 className={`flex items-center gap-2 text-sm text-gray-500 ${
                   index % 2 === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
@@ -472,6 +436,41 @@ function ProjectCard({ project, index, inView, t }: { project: Project; index: n
     </motion.div>
   );
 }
+
+const projects: Project[] = [
+  {
+    id: 'kravmaga-app',
+    title: 'kravmaga-aplikacja.pl',
+    type: 'hybrid',
+    url: 'https://kravmaga-aplikacja.pl',
+    technologies: ['Flutter', 'Dart', 'Firebase', 'Web', 'Android'],
+    gradient: 'from-red-500 via-red-600 to-black',
+  },
+  {
+    id: 'akademia-web',
+    title: 'akademia-samoobrony.pl',
+    type: 'web',
+    url: 'https://akademia-samoobrony.pl',
+    technologies: ['Next.js', 'TypeScript', 'Tailwind', 'Framer Motion'],
+    gradient: 'from-white via-red-500 to-[#00ff41]',
+  },
+  {
+    id: 'holisticstar',
+    title: 'holisticstar.pl',
+    type: 'web',
+    url: 'https://holisticstar.pl',
+    technologies: ['Next.js', 'React', 'Tailwind', 'Calendly'],
+    gradient: 'from-purple-500 via-pink-500 to-rose-500',
+  },
+  {
+    id: 'djluca',
+    title: 'djluca.pl',
+    type: 'web',
+    url: 'https://djluca.pl',
+    technologies: ['Next.js', 'TypeScript', 'Tailwind'],
+    gradient: 'from-cyan-500 via-blue-500 to-purple-500',
+  },
+];
 
 export default function PortfolioSection() {
   const { t } = useLanguage();
