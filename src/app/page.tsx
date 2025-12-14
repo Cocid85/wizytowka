@@ -7,6 +7,7 @@ import ClientFeaturesSection from '@/components/sections/ClientFeaturesSection';
 import ContactSection from '@/components/sections/ContactSection';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import CookieBanner from '@/components/CookieBanner';
 
 export default function Home() {
   return (
@@ -35,6 +36,7 @@ export default function Home() {
       <ProcessSection />
       <ContactSection />
       <Footer />
+      <CookieBanner />
     </main>
   );
 }

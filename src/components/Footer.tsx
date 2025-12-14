@@ -217,9 +217,21 @@ export default function Footer() {
           transition={{ delay: 0.5 }}
           className="py-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4"
         >
-          <p className="text-sm text-gray-500 flex items-center gap-1">
-            © {currentYear} {t('footer.copyright')}
-          </p>
+          <div className="flex flex-col md:flex-row items-center gap-4">
+            <p className="text-sm text-gray-500 flex items-center gap-1">
+              © {currentYear} {t('footer.copyright')}
+            </p>
+            
+            {/* Link to privacy policy */}
+            <div className="flex items-center gap-4 text-sm">
+              <a 
+                href="/polityka-prywatnosci" 
+                className="text-gray-500 hover:text-white transition-colors"
+              >
+                Polityka Prywatności
+              </a>
+            </div>
+          </div>
           
           <div className="flex items-center gap-2 text-sm text-gray-500">
             <span>{t('footer.builtWith')}</span>

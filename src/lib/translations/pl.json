@@ -340,6 +340,159 @@
       "quarter": { "label": "2-3 miesiące", "desc": "Rozbudowany projekt" },
       "flexible": { "label": "Elastyczny termin", "desc": "Bez pośpiechu" }
     }
+  },
+  "cookie": {
+    "title": "Szanujemy Twoją",
+    "titleHighlight": "prywatność",
+    "description": "Używamy ciasteczek, by zapewnić najlepsze doświadczenie. Wybierz, które akceptujesz.",
+    "privacyPolicy": "Polityka prywatności",
+    "active": "aktywnych",
+    "customize": "Dostosuj",
+    "onlyNecessary": "Tylko niezbędne",
+    "acceptAll": "Akceptuj wszystkie",
+    "saved": "Zapisano! 🎉",
+    "savedMessage": "Twoje preferencje zostały zapisane",
+    "settings": "Ustawienia cookies",
+    "categories": {
+      "necessary": {
+        "name": "Niezbędne",
+        "description": "Wymagane do działania strony"
+      },
+      "analytics": {
+        "name": "Analityczne",
+        "description": "Statystyki i analiza ruchu"
+      },
+      "functional": {
+        "name": "Funkcjonalne",
+        "description": "Personalizacja doświadczenia"
+      },
+      "marketing": {
+        "name": "Marketingowe",
+        "description": "Reklamy i remarketing"
+      }
+    },
+    "required": "Wymagane"
+  },
+  "privacy": {
+    "title": "Polityka Prywatności",
+    "subtitle": "Dbamy o Twoją prywatność. Dowiedz się, jak przetwarzamy Twoje dane zgodnie z RODO.",
+    "update": "Aktualizacja",
+    "sectionsLabel": "Sekcji",
+    "rights": "Twoich praw",
+    "cookieTypes": "Typów cookies",
+    "questions": "Masz pytania dotyczące prywatności?",
+    "questionsDesc": "Chętnie odpowiem na wszystkie Twoje pytania",
+    "writeToMe": "Napisz do mnie",
+    "backToHome": "Powrót na stronę główną",
+    "sectionTitles": {
+      "administrator": "Administrator danych",
+      "zakres": "Zakres zbieranych danych",
+      "cele": "Cele przetwarzania",
+      "cookies": "Pliki cookies",
+      "prawa": "Twoje prawa (RODO)",
+      "bezpieczenstwo": "Bezpieczeństwo danych",
+      "odbiorcy": "Odbiorcy danych",
+      "zmiany": "Zmiany w polityce"
+    },
+    "ui": {
+      "clickToExpand": "Kliknij aby rozwinąć",
+      "clickToCollapse": "Kliknij aby zwinąć",
+      "purpose": "Cel",
+      "legalBasis": "Podstawa prawna",
+      "period": "Okres",
+      "examples": "Przykłady",
+      "tip": "Wskazówka",
+      "lastUpdate": "Ostatnia aktualizacja"
+    },
+    "sections": {
+      "administrator": {
+        "intro": "Administratorem Twoich danych osobowych jest:",
+        "note": "W sprawach związanych z ochroną danych osobowych możesz skontaktować się z administratorem pod powyższym adresem email.",
+        "contact": {
+          "email": "Email",
+          "phone": "Telefon",
+          "location": "Lokalizacja"
+        }
+      },
+      "zakres": {
+        "intro": "Zbieramy następujące kategorie danych:",
+        "categories": {
+          "contactForm": {
+            "title": "Formularz kontaktowy",
+            "items": ["Imię i nazwisko", "Adres email", "Treść wiadomości", "Numer telefonu (opcjonalnie)"]
+          },
+          "brief": {
+            "title": "Brief projektowy",
+            "items": ["Typ projektu", "Preferencje funkcjonalności", "Budżet i termin", "Opis projektu"]
+          },
+          "technical": {
+            "title": "Dane techniczne",
+            "items": ["Adres IP (anonimizowany)", "Typ przeglądarki", "Odwiedzone strony", "Czas na stronie"]
+          }
+        }
+      },
+      "cele": {
+        "intro": "Twoje dane przetwarzamy w następujących celach:",
+        "purposes": {
+          "inquiry": { "purpose": "Odpowiedź na zapytanie", "period": "Do zakończenia sprawy" },
+          "contract": { "purpose": "Realizacja umowy", "period": "Czas trwania + 6 lat" },
+          "analytics": { "purpose": "Statystyki i analityka", "period": "Do wycofania zgody" },
+          "tax": { "purpose": "Obowiązki podatkowe", "period": "5 lat" },
+          "claims": { "purpose": "Dochodzenie roszczeń", "period": "Okres przedawnienia" }
+        }
+      },
+      "cookies": {
+        "intro": "Nasza strona wykorzystuje pliki cookies:",
+        "types": {
+          "necessary": { "name": "Niezbędne", "desc": "Wymagane do działania strony" },
+          "analytics": { "name": "Analityczne", "desc": "Analiza ruchu (Google Analytics)" },
+          "functional": { "name": "Funkcjonalne", "desc": "Zapamiętują preferencje" },
+          "marketing": { "name": "Marketingowe", "desc": "Personalizacja reklam" }
+        },
+        "note": "Możesz zmienić ustawienia cookies klikając ikonę 🍪 w lewym dolnym rogu strony."
+      },
+      "prawa": {
+        "intro": "Zgodnie z RODO przysługują Ci następujące prawa:",
+        "rights": {
+          "access": { "title": "Prawo dostępu", "desc": "Możesz uzyskać informację, jakie dane przetwarzamy" },
+          "rectification": { "title": "Prawo do sprostowania", "desc": "Możesz poprawić nieprawidłowe dane" },
+          "erasure": { "title": "Prawo do usunięcia", "desc": "Możesz żądać usunięcia danych (\"prawo do bycia zapomnianym\")" },
+          "restriction": { "title": "Prawo do ograniczenia", "desc": "Możesz ograniczyć przetwarzanie w określonych sytuacjach" },
+          "portability": { "title": "Prawo do przenoszenia", "desc": "Możesz otrzymać dane w formacie do przeniesienia" },
+          "objection": { "title": "Prawo do sprzeciwu", "desc": "Możesz sprzeciwić się przetwarzaniu danych" },
+          "withdrawal": { "title": "Prawo do wycofania zgody", "desc": "W każdej chwili możesz wycofać zgodę" }
+        },
+        "warning": "Jeśli uważasz, że przetwarzanie narusza RODO, możesz złożyć skargę do Prezesa UODO."
+      },
+      "bezpieczenstwo": {
+        "intro": "Stosujemy odpowiednie środki ochrony:",
+        "measures": {
+          "ssl": { "title": "Szyfrowanie SSL/TLS", "desc": "Cała komunikacja jest szyfrowana" },
+          "passwords": { "title": "Bezpieczne hasła", "desc": "Hasła hashowane algorytmem bcrypt" },
+          "firewall": { "title": "Firewall", "desc": "Ochrona przed atakami" },
+          "backups": { "title": "Backupy", "desc": "Regularne kopie zapasowe" },
+          "access": { "title": "Kontrola dostępu", "desc": "Ograniczony dostęp do danych" },
+          "audits": { "title": "Audyty", "desc": "Regularne przeglądy bezpieczeństwa" }
+        }
+      },
+      "odbiorcy": {
+        "intro": "Twoje dane mogą być przekazywane:",
+        "recipients": {
+          "google": { "purpose": "Google Analytics – analityka" },
+          "hosting": { "purpose": "Przechowywanie danych" },
+          "email": { "purpose": "Wysyłka wiadomości" }
+        },
+        "note": "Dane nie są sprzedawane ani udostępniane podmiotom trzecim w celach marketingowych bez Twojej zgody."
+      },
+      "zmiany": {
+        "intro": "O zmianach poinformujemy poprzez:",
+        "methods": [
+          "Wyświetlenie komunikatu na stronie",
+          "Aktualizację daty \"Ostatnia aktualizacja\"",
+          "Ponowne wyświetlenie banera cookies"
+        ]
+      }
+    }
   }
 }
 

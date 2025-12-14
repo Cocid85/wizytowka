@@ -340,6 +340,159 @@
       "quarter": { "label": "2-3 months", "desc": "Advanced project" },
       "flexible": { "label": "Flexible deadline", "desc": "No rush" }
     }
+  },
+  "cookie": {
+    "title": "We respect your",
+    "titleHighlight": "privacy",
+    "description": "We use cookies to provide the best experience. Choose which ones you accept.",
+    "privacyPolicy": "Privacy policy",
+    "active": "active",
+    "customize": "Customize",
+    "onlyNecessary": "Only necessary",
+    "acceptAll": "Accept all",
+    "saved": "Saved! 🎉",
+    "savedMessage": "Your preferences have been saved",
+    "settings": "Cookie settings",
+    "categories": {
+      "necessary": {
+        "name": "Necessary",
+        "description": "Required for site functionality"
+      },
+      "analytics": {
+        "name": "Analytics",
+        "description": "Statistics and traffic analysis"
+      },
+      "functional": {
+        "name": "Functional",
+        "description": "Experience personalization"
+      },
+      "marketing": {
+        "name": "Marketing",
+        "description": "Ads and remarketing"
+      }
+    },
+    "required": "Required"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "We care about your privacy. Learn how we process your data in accordance with GDPR.",
+    "update": "Update",
+    "sectionsLabel": "Sections",
+    "rights": "Your rights",
+    "cookieTypes": "Cookie types",
+    "questions": "Have questions about privacy?",
+    "questionsDesc": "I'll be happy to answer all your questions",
+    "writeToMe": "Write to me",
+    "backToHome": "Back to homepage",
+    "sectionTitles": {
+      "administrator": "Data controller",
+      "zakres": "Scope of collected data",
+      "cele": "Processing purposes",
+      "cookies": "Cookies",
+      "prawa": "Your rights (GDPR)",
+      "bezpieczenstwo": "Data security",
+      "odbiorcy": "Data recipients",
+      "zmiany": "Policy changes"
+    },
+    "ui": {
+      "clickToExpand": "Click to expand",
+      "clickToCollapse": "Click to collapse",
+      "purpose": "Purpose",
+      "legalBasis": "Legal basis",
+      "period": "Period",
+      "examples": "Examples",
+      "tip": "Tip",
+      "lastUpdate": "Last update"
+    },
+    "sections": {
+      "administrator": {
+        "intro": "The controller of your personal data is:",
+        "note": "For matters related to personal data protection, you can contact the controller at the above email address.",
+        "contact": {
+          "email": "Email",
+          "phone": "Phone",
+          "location": "Location"
+        }
+      },
+      "zakres": {
+        "intro": "We collect the following categories of data:",
+        "categories": {
+          "contactForm": {
+            "title": "Contact form",
+            "items": ["Full name", "Email address", "Message content", "Phone number (optional)"]
+          },
+          "brief": {
+            "title": "Project brief",
+            "items": ["Project type", "Feature preferences", "Budget and timeline", "Project description"]
+          },
+          "technical": {
+            "title": "Technical data",
+            "items": ["IP address (anonymized)", "Browser type", "Visited pages", "Time on site"]
+          }
+        }
+      },
+      "cele": {
+        "intro": "We process your data for the following purposes:",
+        "purposes": {
+          "inquiry": { "purpose": "Response to inquiry", "period": "Until case closure" },
+          "contract": { "purpose": "Contract fulfillment", "period": "Contract duration + 6 years" },
+          "analytics": { "purpose": "Statistics and analytics", "period": "Until consent withdrawal" },
+          "tax": { "purpose": "Tax obligations", "period": "5 years" },
+          "claims": { "purpose": "Claims enforcement", "period": "Statute of limitations period" }
+        }
+      },
+      "cookies": {
+        "intro": "Our website uses cookies:",
+        "types": {
+          "necessary": { "name": "Necessary", "desc": "Required for site functionality" },
+          "analytics": { "name": "Analytics", "desc": "Traffic analysis (Google Analytics)" },
+          "functional": { "name": "Functional", "desc": "Remember preferences" },
+          "marketing": { "name": "Marketing", "desc": "Ad personalization" }
+        },
+        "note": "You can change cookie settings by clicking the 🍪 icon in the bottom left corner of the page."
+      },
+      "prawa": {
+        "intro": "In accordance with GDPR, you have the following rights:",
+        "rights": {
+          "access": { "title": "Right of access", "desc": "You can obtain information about what data we process" },
+          "rectification": { "title": "Right to rectification", "desc": "You can correct inaccurate data" },
+          "erasure": { "title": "Right to erasure", "desc": "You can request data deletion (\"right to be forgotten\")" },
+          "restriction": { "title": "Right to restriction", "desc": "You can restrict processing in certain situations" },
+          "portability": { "title": "Right to data portability", "desc": "You can receive data in a portable format" },
+          "objection": { "title": "Right to object", "desc": "You can object to data processing" },
+          "withdrawal": { "title": "Right to withdraw consent", "desc": "You can withdraw consent at any time" }
+        },
+        "warning": "If you believe that processing violates GDPR, you can file a complaint with the Data Protection Authority."
+      },
+      "bezpieczenstwo": {
+        "intro": "We apply appropriate protection measures:",
+        "measures": {
+          "ssl": { "title": "SSL/TLS encryption", "desc": "All communication is encrypted" },
+          "passwords": { "title": "Secure passwords", "desc": "Passwords hashed with bcrypt algorithm" },
+          "firewall": { "title": "Firewall", "desc": "Protection against attacks" },
+          "backups": { "title": "Backups", "desc": "Regular backups" },
+          "access": { "title": "Access control", "desc": "Limited access to data" },
+          "audits": { "title": "Audits", "desc": "Regular security reviews" }
+        }
+      },
+      "odbiorcy": {
+        "intro": "Your data may be transferred to:",
+        "recipients": {
+          "google": { "purpose": "Google Analytics – analytics" },
+          "hosting": { "purpose": "Data storage" },
+          "email": { "purpose": "Message sending" }
+        },
+        "note": "Data is not sold or shared with third parties for marketing purposes without your consent."
+      },
+      "zmiany": {
+        "intro": "We will inform about changes through:",
+        "methods": [
+          "Displaying a message on the website",
+          "Updating the \"Last update\" date",
+          "Re-displaying the cookie banner"
+        ]
+      }
+    }
   }
 }
 
