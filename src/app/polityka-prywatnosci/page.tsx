@@ -24,13 +24,12 @@ import {
   Phone,
   MapPin,
   Menu,
-  X,
-  Home,
-  ArrowLeft
+  X
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Link from 'next/link';
 import Image from 'next/image';
+import Navigation from '@/components/Navigation';
 
 // ============================================
 // KONFIGURACJA - UZUPEŁNIJ SWOJE DANE
@@ -1030,40 +1029,8 @@ export default function PrivacyPolicyPage() {
         style={{ scaleX }}
       />
 
-      {/* Back to home button */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        className="fixed top-4 left-4 z-50"
-      >
-        <Link href="/">
-          <motion.button
-            whileHover={{ scale: 1.05, x: 5 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/20 transition-all"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm font-medium">{t('privacy.backToHome')}</span>
-          </motion.button>
-        </Link>
-      </motion.div>
-
-      {/* Language switcher */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        className="fixed top-4 right-4 z-50"
-      >
-        <motion.button
-          onClick={() => setLanguage(language === 'pl' ? 'en' : 'pl')}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all flex items-center justify-center text-gray-300 hover:text-white"
-          title={language === 'pl' ? 'Switch to English' : 'Przełącz na Polski'}
-        >
-          <Globe className="w-5 h-5" />
-        </motion.button>
-      </motion.div>
+      {/* Navigation Menu */}
+      <Navigation />
 
       {/* Navigation */}
       <NavigationSidebar 
