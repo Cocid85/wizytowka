@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl" className="dark">
+    <html lang="pl" className="dark" data-scroll-behavior="smooth">
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         <LanguageProvider>
           <LanguageWrapper>
